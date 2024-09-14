@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en-us">
+ <head>
+  <meta charset=UTF-8>
+  <meta content="width=device-width" name="viewport">
+  <title>RDF-star: Reifiers &amp; Graphs @ TPAC 2024</title>
+  <link rel="stylesheet" href="https://www.w3.org/2024/Talks/TPAC/Templates/slides.css">
+  <style>
+    pre, code { font-variant-ligatures: none; }
+    .lightmode pre {
+        background-color: #eee;
+        color: #333;
+    }
+    .slide.side pre {
+      display: inline-block;
+    }
+  </style>
+  <script src="https://www.w3.org/2024/Talks/TPAC/Templates/b6plus.js"></script>
+ </head>
+ <body class="lightmode shower fade-in duration=1">
+
+  <section class="slide cover clear">
+   <h1>Reifiers &amp; Graphs</h1>
+    <address>RDF-star WG</address>
+    <p>TPAC 2024<br>
+      Anaheim CA, USA<br>
+      hybrid meeting<br>
+      23–27 SEPTEMBER 2024</p>
+    <p class="note">(Slides by Niklas Lindström, National Library of Sweden.)
+  </section>
+
+  <section class="slide side right big">
+    <h2>A&nbsp;<i>Simple</i>&nbsp;Triple</h2>
+    <img class="side"
+          src="stmt1.svg"
+          alt="">
+    <pre>:Alice&nbsp;:bought&nbsp;:LennyTheLion&nbsp;.</pre>
+    <p>Propositional atoms.
+    <!--
+    <p>Building blocks of the interpretation.
+    -->
+  </section>
+
+  <section class="slide">
+    <h2>RDF 1.2: Triple Terms</h2>
+    <p>A new primitive, alongside IRIs, bnodes and literals.
+    <pre>&lt;&lt;( :Alice :bought :LennyTheLion )>></pre>
+    <ul>
+      <li>Compound (three-tuple).
+      <li>Atomic (like literals).
+      <li>Can be used as objects of a reifying predicate.
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Triple Terms are Abstract</h2>
+    <ul>
+      <li>Act as references to triples (the edges of the interpretation).
+      <li>They are <i>not</i> occurrences/tokens/utterances.
+      <li>To describe them as such (contextually), you need a concrete <em>reifying</em> resource.
+    </ul>
+  </section>
+
+  <section class="slide side right big">
+    <h2>Reifiers</h2>
+    <pre>_:b1 rdf:reifies
+  &lt;&lt;( :Alice
+        :bought
+          :LennyTheLion )>> .</pre>
+    </pre>
+    <img class="side"
+          src="reifier1-blank.svg"
+          alt="">
+    <!--
+    <p>Any kind of resource that <code>rdf:reifies</code> one or more triple terms.</p>
+    -->
+  </section>
+
+  <section class="slide side right big">
+   <h2>Reifier&nbsp;Sugar</h2>
+    <pre>&lt;&lt; :Alice :bought :LennyTheLion >> .</pre>
+    <img class="side"
+          src="reifier1-blank.svg"
+          alt="">
+  </section>
+
+  <section class="slide side right big">
+    <h2>Reifier&nbsp;of&nbsp;a&nbsp;Truth</h2>
+    <img class="side"
+         src="triple1-reifier-blank.svg"
+         alt="">
+    <pre>&lt;&lt; :Alice :bought :LennyTheLion >> .
+:Alice :bought :LennyTheLion .</pre>
+  </section>
+
+  <section class="slide side right big">
+    <h2>Annotation&nbsp;Sugar</h2>
+    <img class="side"
+         src="triple1-reifier-blank.svg"
+         alt="">
+    <pre>:Alice :bought :LennyTheLion {|
+ |} .</pre>
+  </section>
+
+  <section class="slide">
+    <h2>Kinds of Reifiers</h2>
+    <p>The type of the reifier determines its nature (may be implied by predicates).
+    <ul>
+      <li>References (utterances, source provenance).
+      <li>Circumstances (qualifying events or situations).
+    </ul>
+  </section>
+
+  <section class="slide side right big">
+    <h2>Provenance</h2>
+    <img class="side"
+         src="triple1-annot-prov.svg"
+         alt="">
+    <pre>
+:Alice bought :LennyTheLion {|
+  :source :TXZ ;
+  :tstamp "0x66e"
+ |} .</pre>
+  </section>
+
+  <section class="slide side right big">
+    <h2>Qualification</h2>
+    <img class="side"
+         src="triple1-annot-qual.svg"
+         alt="">
+    <pre>
+:Alice :bought :LennyTheLion {|
+  :seller :ToyStore ;
+  :date "2024-06"
+ |} .</pre>
+  </section>
+
+  <section class="slide side right big">
+    <h2>Qualifications</h2>
+    <img class="side"
+         src="triple1-annot-qual2.svg"
+         alt="">
+    <pre>
+:Alice :bought :LennyTheLion {|
+    :seller :ToyStore ;
+    :date "2024-06"
+ |}
+ {| :seller :Market ;
+    :date "2024-12"
+ |} .</code>
+  </section>
+
+  <section class="slide side right big">
+    <h2>Compound&nbsp;Qualification</h2>
+    <img class="side"
+         src="triple2-annot-qual.svg"
+         alt="">
+    <pre>
+:Alice :bought
+    :LennyTheLion ~ _:b1.
+
+:ToyStore :sold
+    :LennyTheLion ~ _:b1.
+
+_:b1 a :Purchase ;
+  :date "2024-06".</pre>
+  </section>
+
+  <section class="slide side right big">
+    <h2>Compound&nbsp;Provenance</h2>
+    <img class="side"
+         src="triple2-annot-prov.svg"
+         alt="">
+    <pre>
+:Alice :bought
+    :LennyTheLion ~ _:b2.
+
+:ToyStore :sold
+    :LennyTheLion ~ _:b2.
+
+_:b2 a :Transaction ;
+  :source :TXZ ;
+  :tstamp "0x66e".</pre>
+  </section>
+
+  <section class="slide">
+    <h2>Is a Reifier a Graph?</h2>
+    <p>Not per se.
+    <p>Reifiers reify one or more atomic statements. They model entities <em>within the interpretation</em>.
+    <p>The triples reified do form a subgraph of the graph in which the reifier is described.
+    <p>But a reifier is not necessarily defined by the triple or triples it reifies. (Just as a thing is not necessarily defined as the set of things it relates to.)
+  </section>
+
+  <section class="slide">
+    <h2>What is The Difference?</h2>
+    <ul>
+      <li>Reifiers have an <code>rdf:reifies</code> relation to each of its triples.
+      <li>Using OWL, this can be constrained, e.g. on cardinality.
+      <li>The triple terms reified are <em>transparent</em>, meaning that their constituent subject, predicate and object terms denote the entities within the interpretation.
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Details Within the Interpretation</h2>
+    <ul>
+      <li>Use cases show that reifiers function as models ranging from granular details, such as source tokens of granular provenance, to circumstances for qualification (of sometimes "too simple" relations).
+      <li>Many of these relate to one triple alone, but some capture a group of them, for various reasons (e.g. differing granularity, scope of a reifying circumstance).
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>RDF Named Graphs</h2>
+    <ul>
+      <li>A named graph is a <em>pair</em> of a name (IRI or bnode) and a graph (set of triples).
+      <li>There is <em>no defined relation</em> between a named graph and the resource denoted by this name.
+    </ul>
+    <pre class="numbered">
+GRAPH &lt;document> {
+  &lt;document> a :Document .
+}
+</pre>
+  </section>
+
+  <section class="slide">
+    <h2>Outside of Graphs</h2>
+    <p>Named graphs are for management of graphs in datasets, <em>external to their interpretation(s)</em>.
+    <p>There is no defined interpretation for datasets.
+    <ul>
+      <li>Can be used in practice as a union (see "union default graph" modes of many SPARQL stores, for querying over the union of all graphs in a dataset).
+      <li>Or as separate, isolated interpretations (e.g. Verifiable Credentials).
+    </ul>
+    <p>(See also the <a href="https://www.w3.org/TR/rdf11-datasets/">RDF 1.1: On Semantics of RDF Datasets</a> note.)
+  </section>
+
+  <section class="slide">
+    <h2>Abstract Graphs</h2>
+    <p>The graph itself&mdash;as a mathematical set of triples&mdash;is reasonably not a concretization of itself.
+    <p>It <i>is</i> a set of abstract triples.
+    <p>Triple terms <i>may</i> play a role in defining such. Cf. <a href="https://w3c.github.io/N3/spec/">Notation 3</a>.
+  </section>
+
+  <section class="slide">
+    <h2>Reifiers Unify Usage Patterns</h2>
+    <p>The domain of <code>rdf:reifies</code> is open (of any type). Examples include:
+    <ul>
+      <li>A token in a source document (classic reification <code>rdf:Statement</code>).
+      <li>An utterance or linguistic expression encoded as multiple related triples ("a person named Alice Liddell").
+      <li>A source message or document.
+      <li>A circumstance or event (a Collaboration, a Purchase, etc.).
+    </ul>
+    <p>This unifies the earlier dichotomy between classic reification and "that which named graph names may denote".
+  </section>
+
+  <section class="slide final">
+    <h2>Thank You!</h2>
+    <p>Time for questions?
+  </section>
+
+ </body>
+</html>
