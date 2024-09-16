@@ -9,7 +9,7 @@
     pre, code { font-variant-ligatures: none; }
     .lightmode pre {
         background-color: #eee;
-        color: #333;
+        color: #000;
     }
     .slide.side pre {
       display: inline-block;
@@ -34,7 +34,7 @@
     <img class="side"
           src="stmt1.svg"
           alt="">
-    <pre>:Alice&nbsp;:bought&nbsp;:LennyTheLion&nbsp;.</pre>
+    <pre class="note">:Alice&nbsp;:bought&nbsp;:LennyTheLion&nbsp;.</pre>
     <p>A propositional atom.
     <!--
     <p>Building blocks of the interpretation.
@@ -44,7 +44,7 @@
   <section class="slide">
     <h2>RDF 1.2: Triple Terms</h2>
     <p>A new primitive, alongside IRIs, bnodes and literals.
-    <pre>&lt;&lt;( :Alice :bought :LennyTheLion )>></pre>
+    <pre class="note">&lt;&lt;( :Alice :bought :LennyTheLion )>></pre>
     <ul>
       <li>Compound (three-tuple).
       <li>Atomic (like literals).
@@ -57,13 +57,14 @@
     <ul>
       <li>Act as references to triples (the edges of the interpretation).
       <li>They are <i>not</i> occurrences/tokens/utterances.
-      <li>To describe them as such (contextually), you need a concrete <em>reifying</em> resource.
     </ul>
+    <p>To describe them as such, you need a concrete <em>reifying</em> resource.
+    <p>Anything that acts as a concretization of abstract propositions is a <em>reifier</em>. It may be a contextual reference, event or circumstance, having a distinct identity and characteristics of its own.
   </section>
 
   <section class="slide side right big">
     <h2>Reifiers</h2>
-    <pre>_:b1 rdf:reifies
+    <pre class="numbered note">[] rdf:reifies
   &lt;&lt;( :Alice
         :bought
           :LennyTheLion )>> .</pre>
@@ -78,7 +79,7 @@
 
   <section class="slide side right big">
    <h2>Reifier&nbsp;Sugar</h2>
-    <pre>&lt;&lt; :Alice :bought :LennyTheLion >> .</pre>
+    <pre class="numbered note">&lt;&lt; :Alice :bought :LennyTheLion >> .</pre>
     <img class="side"
           src="reifier1-blank.svg"
           alt="">
@@ -89,7 +90,7 @@
     <img class="side"
          src="triple1-reifier-blank.svg"
          alt="">
-    <pre>&lt;&lt; :Alice :bought :LennyTheLion >> .
+    <pre class="numbered note">&lt;&lt; :Alice :bought :LennyTheLion >> .
 :Alice :bought :LennyTheLion .</pre>
   </section>
 
@@ -98,7 +99,7 @@
     <img class="side"
          src="triple1-reifier-blank.svg"
          alt="">
-    <pre>:Alice :bought :LennyTheLion {|
+    <pre class="numbered note">:Alice :bought :LennyTheLion {|
  |} .</pre>
   </section>
 
@@ -116,7 +117,7 @@
     <img class="side"
          src="triple1-annot-prov.svg"
          alt="">
-    <pre>
+    <pre class="numbered note">
 :Alice bought :LennyTheLion {|
   :source :TXZ ;
   :tstamp "0x66e"
@@ -128,7 +129,7 @@
     <img class="side"
          src="triple1-annot-qual.svg"
          alt="">
-    <pre>
+    <pre class="numbered note">
 :Alice :bought :LennyTheLion {|
   :seller :ToyStore ;
   :date "2024-06"
@@ -140,7 +141,7 @@
     <img class="side"
          src="triple1-annot-qual2.svg"
          alt="">
-    <pre>
+    <pre class="numbered note">
 :Alice :bought :LennyTheLion {|
     :seller :ToyStore ;
     :date "2024-06"
@@ -155,14 +156,14 @@
     <img class="side"
          src="triple2-annot-qual.svg"
          alt="">
-    <pre>
+    <pre class="numbered note">
 :Alice :bought
-    :LennyTheLion ~ _:b1.
+    :LennyTheLion ~ _:r1 .
 
 :ToyStore :sold
-    :LennyTheLion ~ _:b1.
+    :LennyTheLion ~ _:r1 .
 
-_:b1 a :Purchase ;
+_:r1 a :Purchase ;
   :date "2024-06".</pre>
   </section>
 
@@ -171,14 +172,14 @@ _:b1 a :Purchase ;
     <img class="side"
          src="triple2-annot-prov.svg"
          alt="">
-    <pre>
+    <pre class="numbered note">
 :Alice :bought
-    :LennyTheLion ~ _:b2.
+    :LennyTheLion ~ _:r2 .
 
 :ToyStore :sold
-    :LennyTheLion ~ _:b2.
+    :LennyTheLion ~ _:r2 .
 
-_:b2 a :Transaction ;
+_:r2 a :Transaction ;
   :source :TXZ ;
   :tstamp "0x66e".</pre>
   </section>
@@ -203,20 +204,24 @@ _:b2 a :Transaction ;
     <p>Another example is modelling of person names.
     <p>Some define just <code>name</code>; others <code>givenName</code> and <code>familyName</code>.
     <p>A <code>Naming</code> may thus reify a single or multiple triples, depending on the modelling choice.
-    <pre class="side">
-GRAPH &lt;model-1>
-{
-  &lt;Alice> :name "Alice Liddell"
-    {| a :Naming ; :date "1852" |}.
+      <div class="side">
+        <br>
+        <br>
+    <pre class="numbered note">
+GRAPH &lt;model-1> {
+  &lt;Alice> :name "Alice Liddell" {|
+        a :Naming ;
+        :date "1852" |} .
 }
 
-GRAPH &lt;model-2>
-{
-  &lt;Alice> :givenName "Alice" ~ _:n;
+GRAPH &lt;model-2> {
+  &lt;Alice> :givenName "Alice" ~ _:n ;
     :familyName "Liddell" ~ _:n .
-  _:n a :Naming ; :date "1852" .
-}
-    </pre>
+
+  _:n a :Naming ;
+    :date "1852" .
+}</pre>
+      </div>
   </section>
 
   <section class="slide side right">
@@ -225,7 +230,7 @@ GRAPH &lt;model-2>
     <p>The triple terms reified are <em>transparent</em>; their constituent subject, predicate and object terms denote entities <em>within the interpretation</em>.
     <p>The reifying purchase is in the same domain of discourse as Alice, the plush lion, the store, and their relationships.
     <img class="side"
-         src="triple1-annot-qual.svg"
+         src="triple2-annot-qual.svg"
          alt="">
   </section>
 
@@ -234,7 +239,7 @@ GRAPH &lt;model-2>
     <p>The triples reified do form a potential subgraph of the graph in which the reifier is described. But a reifier is not necessarily defined by the triple or triples it reifies.
     <p>For example, a purchase is a conceivable concretization of a bought and sold relationship, but it is not intrinsically defined by them. It has other properties, such as a point in time, a location, etc.
     <img class="side"
-         src="triple2-annot-qual.svg"
+         src="subgraph-triple2-annot-qual.svg"
          alt="">
   </section>
 
@@ -245,9 +250,10 @@ GRAPH &lt;model-2>
       <li>Reifiers have an <code>rdf:reifies</code> relation to each of its triples. (Just as Alice has two parents, not a set of parents.) Each relationship holds individually, monotonically.
     </ul>
     <p>Using OWL, this can be constrained, e.g. on cardinality:
-    <pre>
+    <pre class="numbered note">
 ex:StatementToken rdfs:subClassOf [ a owl:Restriction ;
-      owl:onProperty rdf:reifies ; owl:cardinality 1 ] .</pre>
+      owl:onProperty rdf:reifies ;
+      owl:cardinality 1 ] .</pre>
     <!--
     <a href="https://en.wikipedia.org/wiki/Russell%27s_paradox">No set is an element of itself</a> (the <a href="https://en.wikipedia.org/wiki/Axiom_of_regularity">axiom of regularity</a> &amp; the <a href="https://en.wikipedia.org/wiki/Axiom_of_pairing">axiom of pairing</a>).
     -->
@@ -259,7 +265,7 @@ ex:StatementToken rdfs:subClassOf [ a owl:Restriction ;
       <li>A named graph is a <em>pair</em> of a name (IRI or bnode) and a graph (set of triples).
       <li>There is <em>no defined relation</em> between a named graph and the resource denoted by this name.
     </ul>
-    <pre class="numbered">
+    <pre class="numbered note">
 GRAPH &lt;document> {
   &lt;document> a :Document .
 }
@@ -269,8 +275,10 @@ GRAPH &lt;document> {
   <section class="slide">
     <h2>An Insulating Gap</h2>
     <p>While the name of a named graph may denote anything, including a reifier, there is no relation from it to the graph, nor to the triples.
-    <pre class="numbered">
-&lt;purchase1> a :Purchase ; :date "2024-06" .
+    <pre class="numbered note">
+&lt;purchase1> a :Purchase ;
+  :date "2024-06" .
+
 GRAPH &lt;purchase1> {
   :Alice :bought :LennyTheLion .
   :ToyStore :sold :LennyTheLion .
