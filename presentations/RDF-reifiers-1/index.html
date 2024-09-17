@@ -43,27 +43,24 @@
 
   <section class="slide">
     <h2>RDF 1.2: Triple Terms</h2>
-    <p>A new primitive, alongside IRIs, bnodes and literals.
+    <p>A new kind of term, alongside IRIs, bnodes and literals.
     <pre class="note">&lt;&lt;( :Alice :bought :LennyTheLion )>></pre>
     <ul>
-      <li>Compound (three-tuple).
-      <li>Atomic (like literals).
+      <li>Compound, immutable three-tuples (akin to literals).
       <li>Can be used as objects of a reifying predicate.
+      <li>Act as references to triples (the edges of the interpretation).
     </ul>
   </section>
 
   <section class="slide">
     <h2>Triple Terms are Abstract</h2>
-    <ul>
-      <li>Act as references to triples (the edges of the interpretation).
-      <li>They are <i>not</i> occurrences/tokens/utterances.
-    </ul>
-    <p>To describe them as such, you need a concrete <em>reifying</em> resource.
+    <p>They are <i>not</i> occurrences, tokens or utterances.
+    <p>To describe such things, you need to identify them as concrete <em>reifying</em> resources.
     <p>Anything that acts as a concretization of abstract propositions is a <em>reifier</em>. It may be a contextual reference, event or circumstance, having a distinct identity and characteristics of its own.
   </section>
 
   <section class="slide side right big">
-    <h2>Reifiers</h2>
+    <h2>Reifier Syntax</h2>
     <pre class="numbered note">[] rdf:reifies
   &lt;&lt;( :Alice
         :bought
@@ -202,7 +199,7 @@ _:r2 a :Transaction ;
   <section class="slide side right big">
     <h2>Name Forms</h2>
     <p>Another example is modelling of person names.
-    <p>Some define just <code>name</code>; others <code>givenName</code> and <code>familyName</code>.
+    <p>Some define just <code>name</code>; others, <code>givenName</code> and <code>familyName</code>.
     <p>A <code>Naming</code> may thus reify a single or multiple triples, depending on the modelling choice.
       <div class="side">
         <br>
@@ -236,7 +233,7 @@ GRAPH &lt;model-2> {
 
   <section class="slide side right">
     <h2>Triples In The Graph</h2>
-    <p>The triples reified do form a potential subgraph of the graph in which the reifier is described. But a reifier is not necessarily defined by the triple or triples it reifies.
+    <p>The triples reified do form a potential subgraph of the graph in which the reifier is described. But a reifier is not necessarily defined only by the triple or triples it reifies.
     <p>For example, a purchase is a conceivable concretization of a bought and sold relationship, but it is not intrinsically defined by them. It has other properties, such as a point in time, a location, etc.
     <img class="side"
          src="subgraph-triple2-annot-qual.svg"
