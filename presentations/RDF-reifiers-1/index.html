@@ -97,7 +97,8 @@
          src="triple1-reifier-blank.svg"
          alt="">
     <pre class="numbered note">:Alice :bought :LennyTheLion {|
- |} .</pre>
+    # ...
+  |} .</pre>
   </section>
 
   <section class="slide">
@@ -115,10 +116,10 @@
          src="triple1-annot-prov.svg"
          alt="">
     <pre class="numbered note">
-:Alice bought :LennyTheLion {|
-  :source :TXZ ;
-  :tstamp "0x66e"
- |} .</pre>
+:Alice :bought :LennyTheLion {|
+    :source :TXZ ;
+    :tstamp "0x66e"
+  |} .</pre>
   </section>
 
   <section class="slide side right big">
@@ -128,9 +129,9 @@
          alt="">
     <pre class="numbered note">
 :Alice :bought :LennyTheLion {|
-  :seller :ToyStore ;
-  :date "2024-06"
- |} .</pre>
+    :seller :ToyStore ;
+    :date "2024-06"
+  |} .</pre>
   </section>
 
   <section class="slide side right big">
@@ -142,10 +143,10 @@
 :Alice :bought :LennyTheLion {|
     :seller :ToyStore ;
     :date "2024-06"
- |}
- {| :seller :Market ;
+  |} {|
+    :seller :Market ;
     :date "2024-12"
- |} .</code>
+  |} .</code>
   </section>
 
   <section class="slide side right big">
