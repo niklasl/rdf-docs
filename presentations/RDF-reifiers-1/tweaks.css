@@ -1,0 +1,8 @@
+pre, code { font-variant-ligatures: none; }
+.lightmode pre {
+    background-color: #eee;
+    color: #000;
+}
+.slide.side pre {
+  display: inline-block;
+}

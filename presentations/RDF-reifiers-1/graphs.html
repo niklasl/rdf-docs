@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en-us">
+ <head>
+  <meta charset=UTF-8>
+  <meta content="width=device-width" name="viewport">
+  <title>RDF-star: Reifiers &amp; Graphs @ TPAC 2024</title>
+  <link rel="stylesheet" href="https://www.w3.org/2024/Talks/TPAC/Templates/slides.css">
+  <link rel="stylesheet" href="tweaks.css">
+  <script src="https://www.w3.org/2024/Talks/TPAC/Templates/b6plus.js"></script>
+ </head>
+ <body class="lightmode shower fade-in duration=1">
+
+  <section class="slide cover clear">
+   <h1>Reifiers &amp; Graphs</h1>
+    <address>RDF-star WG</address>
+    <p>TPAC 2024<br>
+      Anaheim CA, USA<br>
+      hybrid meeting<br>
+      23–27 SEPTEMBER 2024</p>
+    <p class="note">(Slides by Niklas Lindström, National Library of Sweden.)
+    <hr>
+    <p class="note">Preceded by: <a href="index.html">Reifiers</a>
+  </section>
+
+  <section class="slide side right">
+    <h2>Is a Reifier a Graph?</h2>
+    <p>Not per se.
+    <p>The triple terms reified are <em>transparent</em>; their constituent subject, predicate and object terms denote entities <em>within the interpretation</em>.
+    <p>The reifying purchase is in the same domain of discourse as Alice, the plush lion, the store, and their relationships.
+    <img class="side"
+         src="triple2-annot-qual.svg"
+         alt="">
+  </section>
+
+  <section class="slide side right">
+    <h2>Triples In The Graph</h2>
+    <p>The triples reified do form a potential subgraph of the graph in which the reifier is described. But a reifier is not necessarily defined only by the triple or triples it reifies.
+    <p>For example, a purchase is a conceivable concretization of a bought and sold relationship, but it is not intrinsically defined by them. It has other properties, such as a point in time, a location, etc.
+    <img class="side"
+         src="subgraph-triple2-annot-qual.svg"
+         alt="">
+  </section>
+
+  <section class="slide">
+    <h2>Unlike Graphs</h2>
+    <ul>
+      <li>A graph is <em>a set of triples</em>. A graph of one triple is a different entity than one of two, even if the former is a subset of the latter.
+      <li>Reifiers have an <code>rdf:reifies</code> relation to each of its triples. (Just as Alice has two parents, not a set of parents.) Each relationship holds individually, monotonically.
+    </ul>
+    <p>Using OWL, this can be constrained, e.g. on cardinality:
+    <pre class="numbered note">
+ex:StatementToken rdfs:subClassOf [ a owl:Restriction ;
+      owl:onProperty rdf:reifies ;
+      owl:cardinality 1 ] .</pre>
+    <!--
+    <a href="https://en.wikipedia.org/wiki/Russell%27s_paradox">No set is an element of itself</a> (the <a href="https://en.wikipedia.org/wiki/Axiom_of_regularity">axiom of regularity</a> &amp; the <a href="https://en.wikipedia.org/wiki/Axiom_of_pairing">axiom of pairing</a>).
+    -->
+  </section>
+
+  <section class="slide">
+    <h2>RDF Named Graphs</h2>
+    <ul>
+      <li>A named graph is a <em>pair</em> of a name (IRI or bnode) and a graph (set of triples).
+      <li>There is <em>no normatively defined relation</em> between a named graph and the resource denoted by this name.
+    </ul>
+    <pre class="numbered note">
+GRAPH &lt;document> {
+  &lt;document> a :Document .
+}
+</pre>
+  </section>
+
+  <section class="slide">
+    <h2>An Insulating Gap</h2>
+    <p>While the name of a named graph may denote anything, including a reifier, there is no relation from it to the graph, nor to the triples.
+    <pre class="numbered note">
+&lt;purchase1> a :Purchase ;
+  :date "2024-06" .
+
+GRAPH &lt;purchase1> {
+  :Alice :bought :LennyTheLion .
+  :ToyStore :sold :LennyTheLion .
+}</pre>
+</pre>
+<p>This prevents further modelling of the relationship between the reifier and its reified triples (such as cardinality, ranges or property chain axioms).
+  </section>
+
+  <section class="slide">
+    <h2>Outside of Graphs</h2>
+    <p>Named graphs are for management of graphs in datasets, <em>external to their interpretation(s)</em>.
+    <p>There is no normatively defined interpretation for datasets.
+    <ul>
+      <li>Can be used in practice as a union (see "union default graph" modes of many SPARQL stores, for querying over the union of all graphs in a dataset).
+      <li>Or as separate, isolated interpretations (e.g. Verifiable Credentials).
+    </ul>
+    <p>(See also the <a href="https://www.w3.org/TR/rdf11-datasets/">RDF 1.1: On Semantics of RDF Datasets</a> note.)
+  </section>
+
+  <section class="slide">
+    <h2>Reifiers Unify Usage Patterns</h2>
+    <p>The domain of <code>rdf:reifies</code> is open (of any type). Examples include:
+    <ul>
+      <li>A token in a source document (classic reification <code>rdf:Statement</code>).
+      <li>An utterance or linguistic expression encoded as multiple related triples ("a person named Alice Liddell").
+      <li>A source message or document ("T indicates that A bought B from C").
+      <li>A circumstance or event (a Collaboration, a Purchase, etc.).
+    </ul>
+    <p>This unifies the earlier dichotomy between classic reification and "that which named graph names may denote".
+  </section>
+
+  <section class="slide">
+    <h2>A Note About Abstract Graphs</h2>
+    <p>The graph itself&mdash;as a mathematical set of triples&mdash;is reasonably not a concretization of itself.
+    <p>It <i>is</i> a set of abstract triples.
+    <p>Triple terms <i>may</i> play a role in defining such. Cf. <a href="https://w3c.github.io/N3/spec/">Notation 3</a>.
+  </section>
+
+  <section class="slide final">
+    <h2>Thank You!</h2>
+    <p>Time for discussion?
+  </section>
+
+ </body>
+</html>
