@@ -75,21 +75,21 @@
 
   <section class="slide side right big">
     <h2>Reifier&nbsp;and&nbsp;Assertion</h2>
-    <img class="side"
-         src="triple1-reifier-blank.svg"
-         alt="">
     <pre class="numbered note">&lt;&lt; :Alice :bought :LennyTheLion >> .
 :Alice :bought :LennyTheLion .</pre>
+    <img class="side"
+         src="triple1-reifier-asserted-blank.svg"
+         alt="">
   </section>
 
   <section class="slide side right big">
     <h2>Annotation&nbsp;Sugar</h2>
-    <img class="side"
-         src="triple1-reifier-blank.svg"
-         alt="">
     <pre class="numbered note">:Alice :bought :LennyTheLion {|
     # ...
   |} .</pre>
+    <img class="side"
+         src="triple1-annot-blank.svg"
+         alt="">
   </section>
 
   <section class="slide">
@@ -103,33 +103,30 @@
 
   <section class="slide side right big">
     <h2>Provenance</h2>
-    <img class="side"
-         src="triple1-annot-prov.svg"
-         alt="">
     <pre class="numbered note">
 :Alice :bought :LennyTheLion {|
     :source :TXZ ;
     :tstamp "0x66e"
   |} .</pre>
+    <img class="side"
+         src="triple1-annot-prov.svg"
+         alt="">
   </section>
 
   <section class="slide side right big">
     <h2>Qualification</h2>
-    <img class="side"
-         src="triple1-annot-qual.svg"
-         alt="">
     <pre class="numbered note">
 :Alice :bought :LennyTheLion {|
     :seller :ToyStore ;
     :date "2024-06"
   |} .</pre>
+    <img class="side"
+         src="triple1-annot-qual.svg"
+         alt="">
   </section>
 
   <section class="slide side right big">
     <h2>Qualifications</h2>
-    <img class="side"
-         src="triple1-annot-qual2.svg"
-         alt="">
     <pre class="numbered note">
 :Alice :bought :LennyTheLion {|
     :seller :ToyStore ;
@@ -137,14 +134,14 @@
   |} {|
     :seller :Market ;
     :date "2024-12"
-  |} .</code>
+  |} .</pre>
+    <img class="side"
+         src="triple1-annot-qual2.svg"
+         alt="">
   </section>
 
   <section class="slide side right big">
     <h2>Compound&nbsp;Qualification</h2>
-    <img class="side"
-         src="triple2-annot-qual.svg"
-         alt="">
     <pre class="numbered note">
 :Alice :bought
     :LennyTheLion ~ _:r1 .
@@ -154,13 +151,13 @@
 
 _:r1 a :Purchase ;
   :date "2024-06".</pre>
+    <img class="side"
+         src="triple2-annot-qual.svg"
+         alt="">
   </section>
 
   <section class="slide side right big">
     <h2>Compound&nbsp;Provenance</h2>
-    <img class="side"
-         src="triple2-annot-prov.svg"
-         alt="">
     <pre class="numbered note">
 :Alice :bought
     :LennyTheLion ~ _:r2 .
@@ -169,8 +166,10 @@ _:r1 a :Purchase ;
     :LennyTheLion ~ _:r2 .
 
 _:r2 a :Transaction ;
-  :source :TXZ ;
   :tstamp "0x66e".</pre>
+    <img class="side"
+         src="triple2-annot-prov.svg"
+         alt="">
   </section>
 
   <section class="slide side right">
