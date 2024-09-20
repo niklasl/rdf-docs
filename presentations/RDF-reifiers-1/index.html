@@ -46,7 +46,7 @@
     <p>A new kind of term, alongside IRIs, bnodes and literals.
     <pre class="note">&lt;&lt;( :Alice :bought :LennyTheLion )>></pre>
     <ul>
-      <li>Compound, immutable three-tuples (akin to literals).
+      <li>Compound, immutable three-tuples.
       <li>Can be used as objects of a reifying predicate.
       <li>Act as references to triples (the edges of the interpretation).
     </ul>
@@ -55,7 +55,7 @@
   <section class="slide">
     <h2>Triple Terms are Abstract</h2>
     <p>They are <i>not</i> occurrences, tokens or utterances.
-    <p>To describe such things, you need to identify them as concrete <em>reifying</em> resources.
+    <p>Such things are concrete <em>reifying</em> resources of abstract triples.
     <p>Anything that acts as a concretization of abstract propositions is a <em>reifier</em>. It may be a contextual reference, event or circumstance, having a distinct identity and characteristics of its own.
   </section>
 
@@ -261,7 +261,7 @@ ex:StatementToken rdfs:subClassOf [ a owl:Restriction ;
     <h2>RDF Named Graphs</h2>
     <ul>
       <li>A named graph is a <em>pair</em> of a name (IRI or bnode) and a graph (set of triples).
-      <li>There is <em>no defined relation</em> between a named graph and the resource denoted by this name.
+      <li>There is <em>no normatively defined relation</em> between a named graph and the resource denoted by this name.
     </ul>
     <pre class="numbered note">
 GRAPH &lt;document> {
@@ -288,7 +288,7 @@ GRAPH &lt;purchase1> {
   <section class="slide">
     <h2>Outside of Graphs</h2>
     <p>Named graphs are for management of graphs in datasets, <em>external to their interpretation(s)</em>.
-    <p>There is no defined interpretation for datasets.
+    <p>There is no normatively defined interpretation for datasets.
     <ul>
       <li>Can be used in practice as a union (see "union default graph" modes of many SPARQL stores, for querying over the union of all graphs in a dataset).
       <li>Or as separate, isolated interpretations (e.g. Verifiable Credentials).
