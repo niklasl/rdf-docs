@@ -238,6 +238,57 @@ GRAPH &lt;model-2> {
       </div>
   </section>
 
+  <section class="slide">
+    <h2>Historical Biography</h2>
+    <pre class="numbered note">
+&lt;Anne_Bonny> a :Person ;
+  :name "Anne Bonny" ;
+  :birthDate "1697" ;
+  :birthPlace &lt;Kinsale,Ireland> ;
+  :spouse &lt;James_Bonny> ;
+  :partner &lt;John_Rackham> ;
+  :occupation &lt;Pirate> ;
+  :deathDate "1733-12-29" ;
+  :placeOfBurial &lt;Spanish_Town,Jamaica> .
+</pre>
+  </section>
+
+  <section class="slide">
+    <h2>Historical Circumstances #1</h2>
+    <pre class="numbered note">
+&lt;Anne_Bonny> a :Person ;
+  :name "Anne Bonny" ;
+  :birthDate "1697" <span class="blue">~</span> <span class="greybg">&lt;#ref001></span> ;
+  :birthPlace &lt;Kinsale,Ireland> <span class="blue">~</span> <span class="greybg">&lt;#ref001></span> ;
+  :spouse &lt;James_Bonny> <span class="blue">~</span> <span class="yellowbg">&lt;#marriage1></span> <span class="blue">~</span> <span class="greybg">&lt;#ref001></span> ;
+  :partner &lt;John_Rackham> <span class="blue">~</span> <span class="greenbg">&lt;#piracy></span> <span class="blue">~</span> <span class="greybg">&lt;#ref001></span> ;
+  :occupation &lt;Pirate> <span class="blue">~</span> <span class="greenbg">&lt;#piracy></span> <span class="blue">~</span> <span class="greybg">&lt;#ref001></span>  ;
+  :deathDate "1733-12-29" <span class="blue">~</span> <span class="brownbg">&lt;#ref002></span> ;
+  :placeOfBurial &lt;Spanish_Town,Jamaica> <span class="blue">~</span> <span class="brownbg">&lt;#ref002></span> .
+
+<span class="blue">&lt;&lt; </span>&lt;Anne_Bonny> :deathDate "1782-04-25" <span class="blue">~</span> <span class="greybg">&lt;#ref001></span><span class="blue"> >></span> .
+</pre>
+  </section>
+
+  <section class="slide">
+    <h2>Historical Circumstances #2</h2>
+    <pre class="numbered note">
+<span class="greybg">&lt;#ref001></span> a :Reference ;
+  :source &lt;http://www.encyclopedia.com/doc/1G2-3446400036.html> ;
+  :date "2024-08-14T12:48:07Z" .
+
+<span class="brownbg">&lt;#ref002></span> a :Reference ;
+  :source &lt;SaintCatherinesParishBurialRecord> ;
+  :date "2024-08-14T13:13:31Z" .
+
+<span class="yellowbg">&lt;#marriage1></span> a :Marriage ;
+  :startDate "1716" <span class="blue">~</span> <span class="greybg">&lt;#ref001></span> .
+
+<span class="greenbg">&lt;#piracy></span> a :Endeavour ;
+  :startDate "1720" <span class="blue">~</span> <span class="greybg">&lt;#ref001></span> .
+</pre>
+  </section>
+
   <section class="slide final">
     <h2>Thank You!</h2>
     <p>Time for questions?

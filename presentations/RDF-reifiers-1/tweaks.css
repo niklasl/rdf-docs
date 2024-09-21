@@ -10,3 +10,24 @@ pre, code { font-variant-ligatures: none; }
 .blue {
   color: #1e88e5;
 }
+
+.greybg {
+  background-color: #aaa6;
+  border-radius: 0.5em;
+}
+.yellowbg {
+  background-color: #fc06;
+  border-radius: 0.5em;
+}
+.greenbg {
+  background-color: #1c26;
+  border-radius: 0.5em;
+}
+.brownbg {
+  background-color: #8816;
+  border-radius: 0.5em;
+}
+.bluebg {
+  background-color: #1e88e566;
+  border-radius: 0.5em;
+}
