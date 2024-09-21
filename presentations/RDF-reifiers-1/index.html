@@ -67,7 +67,8 @@
 
   <section class="slide side right big">
    <h2>Reifier&nbsp;Sugar</h2>
-    <pre class="numbered note">&lt;&lt; :Alice :bought :LennyTheLion >> .</pre>
+    <pre class="numbered note">&lt;&lt; :Alice :bought :LennyTheLion >>
+  a rdfs:Resource .</pre>
     <img class="side"
           src="reifier1-blank.svg"
           alt="">
@@ -85,11 +86,24 @@
   <section class="slide side right big">
     <h2>Annotation&nbsp;Sugar</h2>
     <pre class="numbered note">:Alice :bought :LennyTheLion {|
-    # ...
+    a rdfs:Resource
   |} .</pre>
     <img class="side"
          src="triple1-annot-blank.svg"
          alt="">
+  </section>
+
+  <section class="slide side right">
+    <h2>Naming Reifiers</h2>
+    <pre class="numbered note">&lt;&lt; :Alice :bought :LennyTheLion ~ &lt;r1> >> .</pre>
+    <pre class="numbered note">:Alice :bought :LennyTheLion ~ &lt;r1> .</pre>
+    <pre class="numbered note">&lt;r1> a rdfs:Resource .</pre>
+    <div class="side">
+      <br>
+      <br>
+      <img src="triple1-reifier-asserted-blank.svg" alt="">
+      <img src="triple1-annot-blank.svg" alt="">
+    </div>
   </section>
 
   <section class="slide">
@@ -174,28 +188,27 @@ _:r2 a :Transaction ;
 
   <section class="slide side right">
     <h2>Varying Granularity</h2>
-      <p>Use cases show reifiers of varying type, granularity and scope.
-        Examples include
-        source tokens of granular provenance, and
-        qualification of "too simple" relations needing more contextual detail.
-      <p>In many cases singular triples need to be reified. But some are of multiple triples at once. The previous example showed <code>bought</code> and <code>sold</code> relations abstracted from a <code>Purchase</code>.
-        <div class="side">
-          <br>
-          <br>
-          <img src="triple1-annot-qual.svg" alt="">
-          <img src="triple2-annot-qual.svg" alt="">
-        </div>
+    <p>Use cases show reifiers of varying type, granularity and scope.
+      Examples include
+      source tokens of granular provenance, and
+      qualification of "too simple" relations needing more contextual detail.
+    <p>In many cases singular triples need to be reified. But some are of multiple triples at once. The previous example showed <code>bought</code> and <code>sold</code> relations abstracted from a <code>Purchase</code>.
+    <div class="side">
+      <br>
+      <br>
+      <img src="triple1-annot-qual.svg" alt="">
+      <img src="triple2-annot-qual.svg" alt="">
+    </div>
   </section>
 
-  <!-- GRAPH CUT -->
   <section class="slide side right big">
     <h2>Name Forms</h2>
     <p>Another example is modelling of person names.
     <p>Some define just <code>name</code>; others, <code>givenName</code> and <code>familyName</code>.
     <p>A <code>Naming</code> may thus reify a single or multiple triples, depending on the modelling choice.
-      <div class="side">
-        <br>
-        <br>
+    <div class="side">
+      <br>
+      <br>
     <pre class="numbered note">
 GRAPH &lt;model-1> {
   &lt;Alice> :name "Alice Liddell" {|
