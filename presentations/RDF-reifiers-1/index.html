@@ -25,7 +25,7 @@
     <img class="side"
           src="stmt1.svg"
           alt="">
-    <pre class="note">:Alice&nbsp;:bought&nbsp;:LennyTheLion&nbsp;.</pre>
+    <pre class="note">&lt;Alice>&nbsp;:bought&nbsp;&lt;LennyTheLion>&nbsp;.</pre>
     <p>A propositional atom.
     <!--
     <p>Building blocks of the interpretation.
@@ -35,7 +35,7 @@
   <section class="slide">
     <h2>RDF 1.2: Triple Terms</h2>
     <p>A new kind of term, alongside IRIs, bnodes and literals.
-    <pre class="note">&lt;&lt;( :Alice :bought :LennyTheLion )>></pre>
+    <pre class="note">&lt;&lt;( &lt;Alice> :bought &lt;LennyTheLion> )>></pre>
     <ul>
       <li>Compound, immutable three-tuples.
       <li>Act as references to triples (the edges of the interpretation).
@@ -52,10 +52,11 @@
 
   <section class="slide side right big">
     <h2>Reifier Syntax</h2>
-    <pre class="numbered note">[] rdf:reifies
-  &lt;&lt;( :Alice
-        :bought
-          :LennyTheLion )>> .</pre>
+    <pre class="numbered note">[] a rdf:Resource ;
+   <span class="blue">rdf:reifies</span>
+      &lt;&lt;( &lt;Alice>
+            :bought
+              &lt;LennyTheLion> )>> .</pre>
     </pre>
     <img class="side"
           src="reifies1-blank.svg"
@@ -67,7 +68,7 @@
 
   <section class="slide side right big">
    <h2>Reifier&nbsp;Sugar</h2>
-    <pre class="numbered note">&lt;&lt; :Alice :bought :LennyTheLion >>
+    <pre class="numbered note"><span class="blue">&lt;&lt; </span>&lt;Alice> :bought &lt;LennyTheLion><span class="blue"> >></span>
   a rdfs:Resource .</pre>
     <img class="side"
           src="reifier1-blank.svg"
@@ -76,8 +77,10 @@
 
   <section class="slide side right big">
     <h2>Reifier&nbsp;and&nbsp;Assertion</h2>
-    <pre class="numbered note">&lt;&lt; :Alice :bought :LennyTheLion >> .
-:Alice :bought :LennyTheLion .</pre>
+    <pre class="numbered note"><span class="blue">&lt;&lt; </span>&lt;Alice> :bought &lt;LennyTheLion><span class="blue"> >></span>
+  a rdfs:Resource .
+
+&lt;Alice> :bought &lt;LennyTheLion> .</pre>
     <img class="side"
          src="triple1-reifier-asserted-blank.svg"
          alt="">
@@ -85,9 +88,9 @@
 
   <section class="slide side right big">
     <h2>Annotation&nbsp;Sugar</h2>
-    <pre class="numbered note">:Alice :bought :LennyTheLion {|
+    <pre class="numbered note">&lt;Alice> :bought &lt;LennyTheLion> <span class="blue">{|</span>
     a rdfs:Resource
-  |} .</pre>
+  <span class="blue">|}</span> .</pre>
     <img class="side"
          src="triple1-annot-blank.svg"
          alt="">
@@ -95,11 +98,16 @@
 
   <section class="slide side right">
     <h2>Naming Reifiers</h2>
-    <pre class="numbered note">&lt;&lt; :Alice :bought :LennyTheLion ~ &lt;r1> >> .</pre>
-    <pre class="numbered note">:Alice :bought :LennyTheLion ~ &lt;r1> .</pre>
-    <pre class="numbered note">&lt;r1> a rdfs:Resource .</pre>
+    <pre class="numbered note"><span class="blue">&lt;&lt; </span>&lt;Alice> :bought &lt;LennyTheLion> <span class="blue">~</span> &lt;r1><span class="blue"> >></span> .
+
+&lt;r1> a rdfs:Resource .</pre>
+    <br>
+    <br>
+    <br>
+    <pre class="numbered note">&lt;Alice> :bought &lt;LennyTheLion> <span class="blue">~</span> _:r1 .
+
+_:r1 a rdfs:Resource .</pre>
     <div class="side">
-      <br>
       <br>
       <img src="triple1-reifier-asserted-blank.svg" alt="">
       <img src="triple1-annot-blank.svg" alt="">
@@ -118,10 +126,11 @@
   <section class="slide side right big">
     <h2>Provenance</h2>
     <pre class="numbered note">
-:Alice :bought :LennyTheLion {|
+&lt;Alice> :bought &lt;LennyTheLion> <span class="blue">{|</span>
+    a :Transaction ;
     :source :TXZ ;
     :tstamp "0x66e"
-  |} .</pre>
+  <span class="blue">|}</span> .</pre>
     <img class="side"
          src="triple1-annot-prov.svg"
          alt="">
@@ -130,10 +139,11 @@
   <section class="slide side right big">
     <h2>Qualification</h2>
     <pre class="numbered note">
-:Alice :bought :LennyTheLion {|
+&lt;Alice> :bought &lt;LennyTheLion> <span class="blue">{|</span>
+    a :Purchase ;
     :seller :ToyStore ;
     :date "2024-06"
-  |} .</pre>
+  <span class="blue">|}</span> .</pre>
     <img class="side"
          src="triple1-annot-qual.svg"
          alt="">
@@ -142,13 +152,15 @@
   <section class="slide side right big">
     <h2>Qualifications</h2>
     <pre class="numbered note">
-:Alice :bought :LennyTheLion {|
+&lt;Alice> :bought &lt;LennyTheLion> <span class="blue">{|</span>
+    a :Purchase ;
     :seller :ToyStore ;
     :date "2024-06"
-  |} {|
+  <span class="blue">|}</span> <span class="blue">{|</span>
+    a :Purchase ;
     :seller :Market ;
     :date "2024-12"
-  |} .</pre>
+  <span class="blue">|}</span> .</pre>
     <img class="side"
          src="triple1-annot-qual2.svg"
          alt="">
@@ -157,11 +169,11 @@
   <section class="slide side right big">
     <h2>Compound&nbsp;Qualification</h2>
     <pre class="numbered note">
-:Alice :bought
-    :LennyTheLion ~ _:r1 .
+&lt;Alice> :bought
+    &lt;LennyTheLion> <span class="blue">~</span> _:r1 .
 
 :ToyStore :sold
-    :LennyTheLion ~ _:r1 .
+    &lt;LennyTheLion> <span class="blue">~</span> _:r1 .
 
 _:r1 a :Purchase ;
   :date "2024-06".</pre>
@@ -173,11 +185,11 @@ _:r1 a :Purchase ;
   <section class="slide side right big">
     <h2>Compound&nbsp;Provenance</h2>
     <pre class="numbered note">
-:Alice :bought
-    :LennyTheLion ~ _:r2 .
+&lt;Alice> :bought
+    &lt;LennyTheLion> <span class="blue">~</span> _:r2 .
 
 :ToyStore :sold
-    :LennyTheLion ~ _:r2 .
+    &lt;LennyTheLion> <span class="blue">~</span> _:r2 .
 
 _:r2 a :Transaction ;
   :tstamp "0x66e".</pre>
@@ -211,14 +223,14 @@ _:r2 a :Transaction ;
       <br>
     <pre class="numbered note">
 GRAPH &lt;model-1> {
-  &lt;Alice> :name "Alice Liddell" {|
+  &lt;Alice> :name "Alice Liddell" <span class="blue">{|</span>
         a :Naming ;
-        :date "1852" |} .
+        :date "1852" <span class="blue">|}</span> .
 }
 
 GRAPH &lt;model-2> {
-  &lt;Alice> :givenName "Alice" ~ _:n ;
-    :familyName "Liddell" ~ _:n .
+  &lt;Alice> :givenName "Alice" <span class="blue">~</span> _:n ;
+    :familyName "Liddell" <span class="blue">~</span> _:n .
 
   _:n a :Naming ;
     :date "1852" .

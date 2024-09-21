@@ -6,3 +6,7 @@ pre, code { font-variant-ligatures: none; }
 .slide.side pre {
   display: inline-block;
 }
+
+.blue {
+  color: #1e88e5;
+}
