@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="148mm"
+   height="105mm"
+   viewBox="0 0 148 105"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25)"
+   sodipodi:docname="diagram0-start240907svg.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#808080"
+     bordercolor="#000000"
+     borderopacity="1"
+     inkscape:showpageshadow="true"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#434343"
+     inkscape:document-units="mm"
+     labelstyle="default"
+     borderlayer="true"
+     showborder="true"
+     showguides="true"
+     inkscape:zoom="1.6872755"
+     inkscape:cx="396.49719"
+     inkscape:cy="472.35914"
+     inkscape:window-width="3840"
+     inkscape:window-height="2083"
+     inkscape:window-x="0"
+     inkscape:window-y="40"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="ConcaveTriangle"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="2"
+       markerHeight="2"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path7" />
+    </marker>
+    <filter
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="Drop Shadow"
+       id="filter6"
+       x="-0.1490033"
+       y="-0.20314577"
+       width="1.3555476"
+       height="1.4959528">
+      <feFlood
+         result="flood"
+         in="SourceGraphic"
+         flood-opacity="0.6"
+         flood-color="rgb(0,0,0)"
+         id="feFlood5" />
+      <feGaussianBlur
+         result="blur"
+         in="SourceGraphic"
+         stdDeviation="0.7"
+         id="feGaussianBlur5" />
+      <feOffset
+         result="offset"
+         in="blur"
+         dx="0.700000"
+         dy="0.800000"
+         id="feOffset5" />
+      <feComposite
+         result="comp1"
+         operator="in"
+         in="flood"
+         in2="offset"
+         id="feComposite5" />
+      <feComposite
+         result="comp2"
+         operator="over"
+         in="SourceGraphic"
+         in2="comp1"
+         id="feComposite6" />
+    </filter>
+  </defs>
+  <g
+     inkscape:label="Lager 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g1"
+       transform="translate(45.295768,22.449309)">
+      <rect
+         style="fill:#dddddd;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-linecap:round;stroke-linejoin:round;filter:url(#filter6)"
+         id="rect1"
+         width="52.271976"
+         height="18.207586"
+         x="36.427311"
+         y="38.540161"
+         transform="matrix(0.83069452,0,0,0.72841954,3.1483511,9.7623039)" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;fill:#000000;stroke-width:0.564999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1.13, 0.564999;stroke-dashoffset:0.564999"
+         x="55.302673"
+         y="45.969547"
+         id="text1"><tspan
+           sodipodi:role="line"
+           id="tspan1"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5px;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;stroke-width:0.565"
+           x="55.302673"
+           y="45.969547">LennyTheLion</tspan></text>
+    </g>
+    <g
+       id="g8">
+      <path
+         style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.230862px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#ConcaveTriangle)"
+         d="M 53.361487,40.737624 89.792225,58.132296"
+         id="path4"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0" />
+      <g
+         id="g3"
+         transform="translate(-16.072839,-2.1735654)">
+        <rect
+           style="fill:#ffffff;fill-opacity:1;stroke-width:0.564999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1.13, 0.564999;stroke-dashoffset:0.564999"
+           id="rect3"
+           width="19.337196"
+           height="5.9806008"
+           x="78.993347"
+           y="49.4077" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.99999px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke-width:0.564999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1.13, 0.564999;stroke-dashoffset:0.564999"
+           x="88.919006"
+           y="53.953125"
+           id="text2"><tspan
+             sodipodi:role="line"
+             id="tspan2"
+             style="fill:#000000;fill-opacity:1;stroke-width:0.565"
+             x="88.919006"
+             y="53.953125">bought</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g4"
+       transform="translate(-25.386745,-4.0748412)">
+      <rect
+         style="fill:#dddddd;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-linecap:round;stroke-linejoin:round;filter:url(#filter6)"
+         id="rect4"
+         width="33.636585"
+         height="19.044117"
+         x="55.062702"
+         y="37.62775"
+         transform="matrix(0.83069452,0,0,0.72841954,9.938101,3.6842266)" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.99999px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke-width:0.564999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1.13, 0.564999;stroke-dashoffset:0.564999"
+         x="69.859184"
+         y="39.87759"
+         id="text3"><tspan
+           sodipodi:role="line"
+           id="tspan3"
+           style="stroke-width:0.565"
+           x="69.859184"
+           y="39.87759">Alice</tspan></text>
+    </g>
+  </g>
+</svg>
