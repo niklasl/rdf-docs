@@ -12,14 +12,14 @@
 
   <section class="slide cover clear">
    <h1>RDF 1.2: Reifying Propositions</h1>
-    <address>Lotico Event 10 June 2025</address>
+    <address>Lotico event 10 June 2025</address>
     <p>Niklas Lindström, National Library of Sweden | RDF &amp; SPARQL WG
   </section>
 
   <section class="slide">
     <h2>RDF 1.2</h2>
     <ul>
-      <li><em>Lots</em> of qualify improvements in the 18+ documents involved (including SPARQL).
+      <li>Lots of qualify improvements in the 18+ documents involved (including SPARQL).
       <li>New <code>rdf:JSON</code> datatype.
       <li>Initial text direction for language literals (<code>rdf:dirLangString</code>).
       <li><em>Triples as objects ("new style reification").</em>
@@ -27,7 +27,7 @@
   </section>
 
   <section class="slide side right big">
-    <h2 class="nowrap">A <i>Simple</i> Triple</h2>
+    <h2 class="nowrap">RDF: A <i>Simple</i> Triple</h2>
     <img class="side"
           src="stmt1.svg"
           alt="">
@@ -47,7 +47,7 @@
     </ul>
     <div class="next">
       <p>Syntactic support for marginalia/annotations.
-      <pre class="numbered note" class="nowrap">&lt;Alice> :bought &lt;LennyTheLion> {| :date "2014-06" |} .</pre>
+      <pre class="numbered note" class="nowrap">&lt;Alice> :bought &lt;LennyTheLion> <span class="blue">{|</span> :date "2014-06" <span class="blue">|}</span> .</pre>
     </div>
   </section>
 
@@ -75,24 +75,24 @@
     <h2>LPGs from an RDF PoV</h2>
     <ul>
     <li>Each edge, even those with the same label, is unique!
-    <li>Not encodable as sets of triples. Rather, <em>"multi-sets"</em> of triples.
+    <li>Not encodable as sets of triples. Rather, "multisets" of triples.
     <li>No model-theoretic semantics (no formal entailments).
     </ul>
   </section>
 
   <section class="slide big side right">
-    <h2 class="nowrap"><span class="linethrough">Multisets</span>~ Reifiers</h2>
+    <h2 class="nowrap"><span class="linethrough">Multisets</span>~ Occurrences?</h2>
     <pre class="numbered note" class="nowrap">&lt;Alice> :bought &lt;LennyTheLion>
-      {| :date "2014-06" |} .
+      <span class="blue">{|</span> :date "2014-06" <span class="blue">|}</span> .
 
 &lt;Alice :bought &lt;LennyTheLion>
-      {| :date "2014-12" |} .</pre>
+      <span class="blue">{|</span> :date "2014-12" <span class="blue">|}</span> .</pre>
     <div class="incremental">
       <div>
         <p>equals
         <pre class="numbered note" class="nowrap">&lt;Alice> :bought &lt;LennyTheLion>
-      {| :date "2014-06" |}
-      {| :date "2014-12" |} .</pre>
+      <span class="blue">{|</span> :date "2014-06" <span class="blue">|}</span>
+      <span class="blue">{|</span> :date "2014-12" <span class="blue">|}</span> .</pre>
         <img class="side"
             src="triple1-annot-qual2.svg"
             alt="">
@@ -104,12 +104,12 @@
     <h2>A Triple Is an Abstraction</h2>
     <pre class="numbered note">
 &lt;Florens> :connectedTo &lt;Rome>
-                {| a :Route ;
+                <span class="blue">{|</span> a :Route ;
                   :road &lt;A1> ;
-                  :distance "276"^^:KM |}
-                {| a :Route ;
+                  :distance "276"^^:KM <span class="blue">|}</span>
+                <span class="blue">{|</span> a :Route ;
                   :road &lt;RaccordoAutostradaleFirenze-Siena-A1> ;
-                  :distance "309"^^:KM |} . </pre>
+                  :distance "309"^^:KM <span class="blue">|}</span> . </pre>
   </section>
 
   <style>
@@ -161,9 +161,9 @@
     <h2>RDF 1.2: Propositions &amp; Reifiers</h2>
     <p>A triple denotes an <code>rdfs:Proposition</code>.
     <p>If the triple is in the graph, it encodes a fact in the interpretation.
+    <p>(Transparent semantics. A "use", not a <code>"mention"@en</code>.)
     <p>A <em>reifier</em> is anything relating to a proposition using <code>rdf:reifies</code>.
-    <p>It can be a token of data, an event, circumstance, situation, context, ...
-    <p><em>Transparent</em> semantics. (Still a "use", not a <code>"mention"@en</code>.)
+    <p>The reifier can be a token of data, an event, circumstance, situation, context, ...
   </section>
 
   <section class="slide">
@@ -200,7 +200,7 @@
   <section class="slide">
     <h2>Quoted Statements</h2>
     <h3>Reifying Triples</h3>
-    <pre class="numbered note">&lt;&lt; :TheEarth :revolvesAround :TheSun >> a :Statement ;
+    <pre class="numbered note"><span class="blue">&lt;&lt; </span>:TheEarth :revolvesAround :TheSun<span class="blue"> >></span> a :Statement ;
   :source :Galileo ;
   :date 1610 .</pre>
     <div class="next">
@@ -215,7 +215,7 @@
 
   <section class="slide side right">
     <h2>Naming Reifiers</h2>
-    <pre class="numbered note"><span class="blue">&lt;&lt; </span>&lt;Alice> :bought &lt;LennyTheLion> <span class="blue">~</span> &lt;r1><span class="blue"> >></span> .
+    <pre class="numbered note"><span class="blue"><span class="blue">&lt;&lt; </span></span>&lt;Alice> :bought &lt;LennyTheLion> <span class="blue">~</span> &lt;r1><span class="blue"><span class="blue"> >></span></span> .
 
 &lt;r1> a :Transaction .</pre>
     <br>
@@ -255,7 +255,7 @@
     </ol>
     Encoded:
     <pre class="numbered note">
-:TheEarth :revolvesAround :TheSun ~ &lt;#1> ~ &lt;#2> ~ &lt;#3> .
+:TheEarth :revolvesAround :TheSun <span class="blue">~</span> &lt;#1> <span class="blue">~</span> &lt;#2> <span class="blue">~</span> &lt;#3> .
 
 &lt;#1> a :Statement ; :source :Galileo ; :date 1610 .
 &lt;#2> a :DogmaticDenial ; :source :ChurchOfOld ; :date 1633 .
@@ -309,15 +309,15 @@
 &lt;Q59166653> a :Person ;
   :name "Malgorzata Domino"@en ;
   :alumniOf &lt;Q681>
-      {| :academicDegree &lt;Q1862897> ;
+      <span class="blue">{|</span> :academicDegree &lt;Q1862897> ;
          :startDate "2005-10-01" ;
-         :endDate "2011-02-28" |}
-      {| :academicDegree &lt;Q950900>
+         :endDate "2011-02-28" <span class="blue">|}</span>
+      <span class="blue">{|</span> :academicDegree &lt;Q950900>
          :startDate "2011-10-01" ;
-         :endDate "2012-11-08" |}
-      {| :academicDegree &lt;Q752297>
+         :endDate "2012-11-08" <span class="blue">|}</span>
+      <span class="blue">{|</span> :academicDegree &lt;Q752297>
          :startDate "2011-03-08" ;
-         :endDate "2015-04-22" |} .</pre>
+         :endDate "2015-04-22" <span class="blue">|}</span> .</pre>
     <img class="side"
          src="example-wd-alumni.svg"
          alt="">
@@ -350,7 +350,7 @@
 
     <pre class="numbered note next">
 &lt;OnTheStateOfThings> a :Text ;
-  :author &lt;Alice> {| :affiliation &lt;HardknockSchool> |} ;
+  :author &lt;Alice> <span class="blue">{|</span> :affiliation &lt;HardknockSchool> <span class="blue">|}</span> ;
   :dateCreated "2025-05-20".
 
 &lt;Alice> a :Person .</pre>
@@ -360,15 +360,15 @@
     <h2 class="nowrap">Continued: Annotated Affiliations</h2>
     <pre class="numbered note">
 &lt;Alice> a :Person ;
-  :affiliation &lt;HardknockSchool> ~ &lt;ctb1> ,
-    &lt;TranscendentUniversity> ~ &lt;ctb2> .
+  :affiliation &lt;HardknockSchool> <span class="blue">~</span> &lt;ctb1> ,
+    &lt;TranscendentUniversity> <span class="blue">~</span> &lt;ctb2> .
 
 &lt;OnTheStateOfThings> a :Text ;
-  :author &lt;Alice> ~ &lt;ctb1> .
+  :author &lt;Alice> <span class="blue">~</span> &lt;ctb1> .
 
 &lt;OnTheChangeOfPatterns> a :Text ;
-  :author &lt;Alice> ~ &lt;ctb2> ,
-    &lt;Lenny> ~ &lt;ctb2> .</pre>
+  :author &lt;Alice> <span class="blue">~</span> &lt;ctb2> ,
+    &lt;Lenny> <span class="blue">~</span> &lt;ctb2> .</pre>
 
     <div class="side">
     <pre class="note next" style="margin: 4em 1em 0 5em">
@@ -554,8 +554,8 @@ _:r1 a :Purchase ;
       <li class="next">
         Syntactic sugar for annotating asserted triples and reifying claims:
         <ul class="next">
-          <li><code>:s :p :o {| a :Q |} .</code> | <code>:s :p :o ~ :r .</code>
-          <li><code>&lt;&lt; s :p :o >> a :Q .</code> | <code>&lt;&lt; s :p :o ~ :r >> .</code>
+          <li><code>:s :p :o <span class="blue">{|</span> a :Q <span class="blue">|}</span> .</code> | <code>:s :p :o <span class="blue">~</span> :r .</code>
+          <li><code><span class="blue">&lt;&lt; </span>s :p :o<span class="blue"> >></span> a :Q .</code> | <code><span class="blue">&lt;&lt; </span>s :p :o <span class="blue">~</span> :r<span class="blue"> >></span> .</code>
         </ul>
       <li class="next">
         Reifiers of different <code>rdf:type</code>s, for qualification and provenance:
