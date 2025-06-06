@@ -54,18 +54,18 @@
     <h2 class="nowrap">Labelled Property Graphs</h2>
     <p>Nodes with properties; edges between nodes.
     <p>Edges can have properties too.
-    <pre class="numbered note">(:ALICE) -[:BOUGHT {date: "2014-06"}]-> (:LENNY_THE_LION)</pre>
+    <pre class="note">(:ALICE) -[:BOUGHT {date: "2014-06"}]-> (:LENNY_THE_LION)</pre>
   </section>
 
   <section class="slide">
     <h2>RDF-star</h2>
-    <p>Begun alignment with LPGs ("properties on edges").
+    <p class="note">Motivations: alignment with LPGs (properties on edges) &amp; statements about statements.
     <ul>
       <li>2014: Foundations of RDF* and SPARQL* (Olaf Hartig)
-        <pre class="numbered note"> <span class="blue">&lt;&lt;</span> &lt;Alice> :bought &lt;LennyTheLion> <span class="blue">>></span> :date "2014-06" .</pre>
+        <pre class="note"> <span class="blue">&lt;&lt;</span> &lt;Alice> :bought &lt;LennyTheLion> <span class="blue">>></span> :date "2014-06" .</pre>
       <li>2020: CG formed
       <li>2021: CG report
-        <pre class="numbered note">&lt;Alice> :bought &lt;LennyTheLion> <span class="blue">{|</span> :date "2014-06" <span class="blue">|}</span> .</pre>
+        <pre class="note">&lt;Alice> :bought &lt;LennyTheLion> <span class="blue">{|</span> :date "2014-06" <span class="blue">|}</span> .</pre>
       <li>Feedback (e-mail; github)
       <li>2022: WG formed
       <li>2026: <span class="linethrough">RDF-star</span> &rarr; RDF 1.2
@@ -81,7 +81,14 @@
     <p>Not encodable as sets of triples. Rather, "multisets" of triples.
     <p>No model-theoretic semantics (no formal entailments).
     </div>
-    <pre class="numbered note">&lt;Alice> :bought &lt;LennyTheLion>
+    <pre class="numbered note">(:ALICE)
+  -[:BOUGHT {date: "2014-06"}]->
+      (:LENNY_THE_LION)
+
+(:ALICE)
+  -[:BOUGHT {date: "2014-12"}]->
+      (:LENNY_THE_LION)</pre>
+    <pre class="numbered note next">&lt;Alice> :bought &lt;LennyTheLion>
       <span class="blue">{|</span> :date "2014-06" ;
          :seller &lt;ToyStore> <span class="blue">|}</span> .
 
@@ -201,7 +208,7 @@ _:b1 <span class="blue">rdf:reifies</span> &lt;&lt;( <span class="grey">&lt;Alic
   <section class="slide">
     <h2>Quoted Statements</h2>
     <h3>Reifying Triples</h3>
-    <pre class="numbered note"><span class="blue">&lt;&lt; </span>:TheEarth :revolvesAround :TheSun<span class="blue"> >></span> a :Statement ;
+    <pre class="numbered note"><span class="blue">&lt;&lt;</span> <span class="grey">:TheEarth :revolvesAround :TheSun</span> <span class="blue">>></span> a :Statement ;
   :source :Galileo ;
   :date 1610 .</pre>
     <div class="next">
@@ -216,7 +223,7 @@ _:b2 :date 1610 .</pre>
 
   <section class="slide side right">
     <h2>Naming Reifiers</h2>
-    <pre class="numbered note"><span class="blue"><span class="blue">&lt;&lt; </span></span>&lt;Alice> :bought &lt;LennyTheLion> <span class="blue">~</span> &lt;r1><span class="blue"><span class="blue"> >></span></span> .
+    <pre class="numbered note"><span class="blue">&lt;&lt;</span> <span class="grey">&lt;Alice> :bought &lt;LennyTheLion></span> <span class="blue">~</span> &lt;r1> <span class="blue">>></span> .
 
 &lt;r1> a :Transaction .</pre>
     <br>
