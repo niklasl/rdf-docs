@@ -66,10 +66,10 @@
     <p class="note">Motivations: alignment with LPGs (properties on edges) &amp; statements about statements.
     <ul>
       <li>2014: Foundations of RDF* and SPARQL* (Olaf Hartig)
-        <pre class="note"> <span class="blue">&lt;&lt;</span> &lt;Alice> :bought &lt;LennyTheLion> <span class="blue">>></span> :date "2014-06" .</pre>
+        <pre class="note"> <span class="red">&lt;&lt;</span> &lt;Alice> :bought &lt;LennyTheLion> <span class="red">>></span> :date "2014-06" .</pre>
       <li>2020: CG formed
       <li>2021: CG report
-        <pre class="note">&lt;Alice> :bought &lt;LennyTheLion> <span class="blue">{|</span> :date "2014-06" <span class="blue">|}</span> .</pre>
+        <pre class="note">&lt;Alice> :bought &lt;LennyTheLion> <span class="red">{|</span> :date "2014-06" <span class="red">|}</span> .</pre>
       <li>Feedback (e-mail; github)
       <li>2022: WG formed
       <li>2026: <span class="linethrough">RDF-star</span> &rarr; RDF 1.2
@@ -94,21 +94,21 @@
   -[:BOUGHT {date: "2014-12"}]->
       (:LENNY_THE_LION)</pre>
     <pre class="numbered note next">&lt;Alice> :bought &lt;LennyTheLion>
-      <span class="blue">{|</span> :date "2014-06" ;
-         :seller &lt;ToyStore> <span class="blue">|}</span> .
+      <span class="red">{|</span> :date "2014-06" ;
+         :seller &lt;ToyStore> <span class="red">|}</span> .
 
 &lt;Alice :bought &lt;LennyTheLion>
-      <span class="blue">{|</span> :date "2014-12" ;
-         :seller &lt;Market> <span class="blue">|}</span> .</pre>
+      <span class="red">{|</span> :date "2014-12" ;
+         :seller &lt;Market> <span class="red">|}</span> .</pre>
   </section>
 
   <section class="slide big side right">
     <h2 class="nowrap"><span class="linethrough">Multisets</span>~ Occurrences</h2>
     <pre class="numbered note">&lt;Alice> :bought &lt;LennyTheLion>
-      <span class="blue">{|</span> :date "2014-06" ;
-         :seller &lt;ToyStore> <span class="blue">|}</span> .
-      <span class="blue">{|</span> :date "2014-12" ;
-         :seller &lt;Market> <span class="blue">|}</span> .</pre>
+      <span class="red">{|</span> :date "2014-06" ;
+         :seller &lt;ToyStore> <span class="red">|}</span> .
+      <span class="red">{|</span> :date "2014-12" ;
+         :seller &lt;Market> <span class="red">|}</span> .</pre>
     <img class="side"
         src="triple1-annot-qual2.svg"
         alt="">
@@ -119,12 +119,12 @@
     <h2>A Triple Is an Abstraction</h2>
     <pre class="numbered note">
 &lt;Florens> :connectedTo &lt;Rome>
-              <span class="blue">{|</span> a :Route ;
+              <span class="red">{|</span> a :Route ;
                 :road &lt;A1> ;
-                :distance "276"^^:KM <span class="blue">|}</span>
-              <span class="blue">{|</span> a :Route ;
+                :distance "276"^^:KM <span class="red">|}</span>
+              <span class="red">{|</span> a :Route ;
                 :road &lt;RaccordoAutostradaleFirenze-Siena-A1> ;
-                :distance "309"^^:KM <span class="blue">|}</span> . </pre>
+                :distance "309"^^:KM <span class="red">|}</span> . </pre>
   </section>
 
   <style>
@@ -161,7 +161,7 @@
 
   <section class="slide side right big">
     <h2 class="nowrap">RDF 1.2: Triples as Objects</h2>
-    <pre class="numbered note">[] <span class="blue">rdf:reifies</span> &lt;&lt;( <span class="grey">&lt;Alice> :bought &lt;LennyTheLion></span> )>> .</pre>
+    <pre class="numbered note">[] <span class="red">rdf:reifies</span> <span class="blue">&lt;&lt;( &lt;Alice> :bought &lt;LennyTheLion> )>></span> .</pre>
     <img class="side"
          src="triple1-reifier-unasserted-blank.svg"
          alt="">
@@ -198,7 +198,7 @@
     <h2 class="nowrap">RDF 1.2: Syntactic Sugar</h2>
     <h3>Annotated Triples</h3>
     <pre class="numbered note">&lt;Alice> :bought &lt;LennyTheLion>
-      <span class="blue">{|</span> a rdfs:Resource <span class="blue">|}</span> .</pre>
+      <span class="red">{|</span> a rdfs:Resource <span class="red">|}</span> .</pre>
     <img class="side"
           src="triple1-annot-blank.svg"
           alt="">
@@ -208,20 +208,20 @@
 &lt;Alice> :bought &lt;LennyTheLion> .
 
 _:b1 a rdfs:Resource .
-_:b1 <span class="blue">rdf:reifies</span> &lt;&lt;( <span class="grey">&lt;Alice> :bought &lt;LennyTheLion></span> )>> .</pre>
+_:b1 <span class="red">rdf:reifies</span> <span class="blue">&lt;&lt;( &lt;Alice> :bought &lt;LennyTheLion> )>></span> .</pre>
     </div>
   </section>
 
   <section class="slide">
     <h2>Quoted Statements</h2>
     <h3>Reifying Triples</h3>
-    <pre class="numbered note"><span class="blue">&lt;&lt;</span> <span class="grey">:TheEarth :revolvesAround :TheSun</span> <span class="blue">>></span> a :Statement ;
+    <pre class="numbered note"><span class="red">&lt;&lt;</span> <span class="blue">:TheEarth :revolvesAround :TheSun</span> <span class="red">>></span> a :Statement ;
   :source :Galileo ;
   :date 1610 .</pre>
     <div class="next">
       <p>Expands to:
       <pre class="numbered note">
-_:b2 <span class="blue">rdf:reifies</span> &lt;&lt;( <span class="grey">:TheEarth :revolvesAround :TheSun</span> )>> .
+_:b2 <span class="red">rdf:reifies</span> <span class="blue">&lt;&lt;( :TheEarth :revolvesAround :TheSun )>></span> .
 _:b2 a :Statement .
 _:b2 :source :Galileo .
 _:b2 :date 1610 .</pre>
@@ -230,13 +230,13 @@ _:b2 :date 1610 .</pre>
 
   <section class="slide side right">
     <h2>Naming Reifiers</h2>
-    <pre class="numbered note"><span class="blue">&lt;&lt;</span> <span class="grey">&lt;Alice> :bought &lt;LennyTheLion></span> <span class="blue">~</span> &lt;r1> <span class="blue">>></span> .
+    <pre class="numbered note"><span class="red">&lt;&lt;</span> <span class="blue">&lt;Alice> :bought &lt;LennyTheLion></span> <span class="red">~</span> &lt;r1> <span class="red">>></span> .
 
 &lt;r1> a :Transaction .</pre>
     <br>
     <br>
     <br>
-    <pre class="numbered note">&lt;Alice> :bought &lt;LennyTheLion> <span class="blue">~</span> &lt;r2> .
+    <pre class="numbered note">&lt;Alice> :bought &lt;LennyTheLion> <span class="red">~</span> &lt;r2> .
 
 &lt;r2> a :Purchase .</pre>
     <div class="side">
@@ -272,11 +272,11 @@ _:b2 :date 1610 .</pre>
   <section class="slide side right big">
     <h2>Provenance</h2>
     <pre class="numbered note">
-&lt;Alice> :bought &lt;LennyTheLion> <span class="blue">{|</span>
+&lt;Alice> :bought &lt;LennyTheLion> <span class="red">{|</span>
     a :Transaction ;
     :source :TXZ ;
     :tstamp "0x66e"
-  <span class="blue">|}</span> .</pre>
+  <span class="red">|}</span> .</pre>
     <img class="side"
          src="triple1-annot-prov.svg"
          alt="">
@@ -285,11 +285,11 @@ _:b2 :date 1610 .</pre>
   <section class="slide side right big">
     <h2>Qualification</h2>
     <pre class="numbered note">
-&lt;Alice> :bought &lt;LennyTheLion> <span class="blue">{|</span>
+&lt;Alice> :bought &lt;LennyTheLion> <span class="red">{|</span>
     a :Purchase ;
     :seller &lt;ToyStore> ;
     :date "2024-06"
-  <span class="blue">|}</span> .</pre>
+  <span class="red">|}</span> .</pre>
     <img class="side"
          src="triple1-annot-qual.svg"
          alt="">
@@ -298,15 +298,15 @@ _:b2 :date 1610 .</pre>
   <section class="slide side right big">
     <h2>Qualifications</h2>
     <pre class="numbered note">
-&lt;Alice> :bought &lt;LennyTheLion> <span class="blue">{|</span>
+&lt;Alice> :bought &lt;LennyTheLion> <span class="red">{|</span>
     a :Purchase ;
     :seller &lt;ToyStore> ;
     :date "2024-06"
-  <span class="blue">|}</span> <span class="blue">{|</span>
+  <span class="red">|}</span> <span class="red">{|</span>
     a :Purchase ;
     :seller &lt;Market> ;
     :date "2024-12"
-  <span class="blue">|}</span> .</pre>
+  <span class="red">|}</span> .</pre>
     <img class="side" src="triple1-annot-qual2.svg" alt="">
   </section>
 
@@ -322,7 +322,7 @@ _:b2 :date 1610 .</pre>
     <div class="next">
       Encoded:
       <pre class="numbered note">
-:TheEarth :revolvesAround :TheSun <span class="blue">~</span> &lt;#1> <span class="blue">~</span> &lt;#2> <span class="blue">~</span> &lt;#3> .
+:TheEarth :revolvesAround :TheSun <span class="red">~</span> &lt;#1> <span class="red">~</span> &lt;#2> <span class="red">~</span> &lt;#3> .
 
 &lt;#1> a :Statement ; :source :Galileo ; :date 1610 .
 &lt;#2> a :DogmaticDenial ; :source :ChurchOfOld ; :date 1633 .
@@ -336,15 +336,15 @@ _:b2 :date 1610 .</pre>
 &lt;Q59166653> a :Person ;
   :name "Malgorzata Domino"@en ;
   :alumniOf &lt;Q681>
-      <span class="blue">{|</span> :academicDegree &lt;Q1862897> ;
+      <span class="red">{|</span> :academicDegree &lt;Q1862897> ;
          :startDate "2005-10-01" ;
-         :endDate "2011-02-28" <span class="blue">|}</span>
-      <span class="blue">{|</span> :academicDegree &lt;Q950900> ;
+         :endDate "2011-02-28" <span class="red">|}</span>
+      <span class="red">{|</span> :academicDegree &lt;Q950900> ;
          :startDate "2011-10-01" ;
-         :endDate "2012-11-08" <span class="blue">|}</span>
-      <span class="blue">{|</span> :academicDegree &lt;Q752297> ;
+         :endDate "2012-11-08" <span class="red">|}</span>
+      <span class="red">{|</span> :academicDegree &lt;Q752297> ;
          :startDate "2011-03-08" ;
-         :endDate "2015-04-22" <span class="blue">|}</span> .</pre>
+         :endDate "2015-04-22" <span class="red">|}</span> .</pre>
     <img class="side"
          src="example-wd-alumni.svg"
          alt="">
@@ -376,13 +376,13 @@ _:b2 :date 1610 .</pre>
       <br>
       <br>
     <pre class="numbered note">
-  &lt;Alice> :name "Alice Liddell" <span class="blue">~</span> &lt;nrx> .
+  &lt;Alice> :name "Alice Liddell" <span class="red">~</span> &lt;nrx> .
 
   &lt;nrx> a :NameRecord ;
     :date "1852" .</pre>
     <pre class="numbered note">
-  &lt;Alice> :givenName "Alice" <span class="blue">~</span> &lt;nrx> ;
-    :familyName "Liddell" <span class="blue">~</span> &lt;nrx> .
+  &lt;Alice> :givenName "Alice" <span class="red">~</span> &lt;nrx> ;
+    :familyName "Liddell" <span class="red">~</span> &lt;nrx> .
 
   &lt;nrx> a :NameRecord ;
       </section>
@@ -390,17 +390,17 @@ _:b2 :date 1610 .</pre>
   <section class="slide side right big">
     <h2 class="nowrap">Continued: Wikidata</h2>
     <pre class="numbered note">
-&lt;Q59166653> sdo:alumniOf &lt;Q681> <span class="blue">~</span> &lt;9220f5f6> <span class="blue">~</span> &lt;ff2f0926> <span class="blue">~</span> &lt;c495f198> .
+&lt;Q59166653> sdo:alumniOf &lt;Q681> <span class="red">~</span> &lt;9220f5f6> <span class="red">~</span> &lt;ff2f0926> <span class="red">~</span> &lt;c495f198> .
 
 &lt;9220f5f6> :academicDegree &lt;Q1862897> ;
   :describedBy &lt;https://pub.orcid.org/v3.0/0000-0001-9436-1074/education/6610842>
-      <span class="next"><span class="blue">~</span> &lt;379d8fe5></span> .
+      <span class="next"><span class="red">~</span> &lt;379d8fe5></span> .
 &lt;ff2f0926> :academicDegree &lt;Q950900> ;
   :describedBy &lt;https://pub.orcid.org/v3.0/0000-0001-9436-1074/education/6610859>
-      <span class="next"><span class="blue">~</span> &lt;379d8fe5></span> .
+      <span class="next"><span class="red">~</span> &lt;379d8fe5></span> .
 &lt;c495f198> :academicDegree &lt;Q752297> ;
   :describedBy &lt;https://pub.orcid.org/v3.0/0000-0001-9436-1074/education/6610892>
-      <span class="next"><span class="blue">~</span> &lt;379d8fe5></span> .
+      <span class="next"><span class="red">~</span> &lt;379d8fe5></span> .
 
 <span class="next">&lt;379d8fe5> a :DataExtraction ;
   :statedIn &lt;ORCIDPublicDataFile2021> ;
@@ -418,10 +418,10 @@ _:b2 :date 1610 .</pre>
     <h2 class="nowrap">Compound Reifier</h2>
     <pre class="numbered note">
 &lt;Alice>
-  :bought &lt;LennyTheLion> <span class="blue">~</span> _:r1 .
+  :bought &lt;LennyTheLion> <span class="red">~</span> _:r1 .
 
 &lt;ToyStore>
-  :sold &lt;LennyTheLion> <span class="blue">~</span> _:r1 .
+  :sold &lt;LennyTheLion> <span class="red">~</span> _:r1 .
 
 _:r1 a :Purchase ;
   :date "2024-06".</pre>
@@ -477,7 +477,7 @@ _:r1 a :Purchase ;
 
     <pre class="numbered note next">
 &lt;OnTheStateOfThings> a :Text ;
-  :author &lt;Alice> <span class="blue">{|</span> :affiliation &lt;HardknockSchool> <span class="blue">|}</span> ;
+  :author &lt;Alice> <span class="red">{|</span> :affiliation &lt;HardknockSchool> <span class="red">|}</span> ;
   :dateCreated "2025-05".
 
 &lt;Alice> a :Person .</pre>
@@ -487,15 +487,15 @@ _:r1 a :Purchase ;
     <h2 class="nowrap">Continued: Annotated Affiliations</h2>
     <pre class="numbered note">
 &lt;Alice> a :Person ;
-  :affiliation &lt;HardknockSchool> <span class="blue">~</span> <span class="yellowbg">&lt;ctb1></span> ,
-    &lt;TranscendentUniversity> <span class="blue">~</span> <span class="greenbg">&lt;ctb2></span> .
+  :affiliation &lt;HardknockSchool> <span class="red">~</span> <span class="yellowbg">&lt;ctb1></span> ,
+    &lt;TranscendentUniversity> <span class="red">~</span> <span class="greenbg">&lt;ctb2></span> .
 
 &lt;OnTheStateOfThings> a :Text ;
-  :author &lt;Alice> <span class="blue">~</span> <span class="yellowbg">&lt;ctb1></span> .
+  :author &lt;Alice> <span class="red">~</span> <span class="yellowbg">&lt;ctb1></span> .
 
 &lt;OnTheChangeOfPatterns> a :Text ;
-  :author &lt;Alice> <span class="blue">~</span> <span class="greenbg">&lt;ctb2></span> ,
-    &lt;Lenny> <span class="blue">~</span> <span class="greybg">&lt;ctb3></span> .</pre>
+  :author &lt;Alice> <span class="red">~</span> <span class="greenbg">&lt;ctb2></span> ,
+    &lt;Lenny> <span class="red">~</span> <span class="brownbg">&lt;ctb3></span> .</pre>
 
     <div class="side">
     <pre class="note" style="margin: 8em 1em 0 5em">
@@ -505,7 +505,7 @@ _:r1 a :Purchase ;
 <span class="greenbg">&lt;ctb2></span> a :Contribution ;
   :date "2036-10".
 
-<span class="greybg">&lt;ctb3></span> a :Contribution ;
+<span class="brownbg">&lt;ctb3></span> a :Contribution ;
   :role rel:win, rel:wst ;
   :date "2036-11".</pre>
     </div>
@@ -530,10 +530,10 @@ _:r1 a :Purchase ;
     <h2 class="nowrap">Looks Like a Graph?</h2>
     <pre class="numbered note">
 &lt;Alice> :bought
-    &lt;LennyTheLion> <span class="blue">~</span> _:r1 .
+    &lt;LennyTheLion> <span class="red">~</span> _:r1 .
 
 :ToyStore :sold
-    &lt;LennyTheLion> <span class="blue">~</span> _:r1 .
+    &lt;LennyTheLion> <span class="red">~</span> _:r1 .
 
 _:r1 a :Purchase ;
   :date "2024-06".</pre>
@@ -560,10 +560,10 @@ _:r1 a :Purchase ;
     <h2 class="nowrap">Reifies Each Proposition</h2>
     <pre class="numbered note">
 &lt;Alice> :bought
-    &lt;LennyTheLion> <span class="blue">~</span> _:r1 .
+    &lt;LennyTheLion> <span class="red">~</span> _:r1 .
 
 :ToyStore :sold
-    &lt;LennyTheLion> <span class="blue">~</span> _:r1 .
+    &lt;LennyTheLion> <span class="red">~</span> _:r1 .
 
 _:r1 a :Purchase ;
   :date "2024-06".</pre>
@@ -603,14 +603,14 @@ _:r1 a :Purchase ;
     <h2>RDF 1.2</h2>
     <ul>
       <li>
-        <em>Triples as objects</em> <span class="next">&rArr; referencing propositions <code>&lt;&lt;( <span class="grey">:s :p :o</span> )>></code>.</span>
+        <em>Triples as objects</em> <span class="next">&rArr; referencing propositions <code><span class="blue">&lt;&lt;( :s :p :o )>></span></code>.</span>
       <li>
         Related to from reifying circumstances <span class="next">using <code>rdf:reifies</code>.</span>
       <li class="next">
         Syntactic sugar for annotating asserted triples and reifying claims:
         <ul class="next">
-          <li><code>:s :p :o <span class="blue">{|</span> a :Q <span class="blue">|}</span> .</code> | <code>:s :p :o <span class="blue">~</span> :r .</code>
-          <li><code><span class="blue">&lt;&lt; </span>s :p :o<span class="blue"> >></span> a :Q .</code> | <code><span class="blue">&lt;&lt; </span>s :p :o <span class="blue">~</span> :r<span class="blue"> >></span> .</code>
+          <li><code>:s :p :o <span class="red">{|</span> a :Q <span class="red">|}</span> .</code> | <code>:s :p :o <span class="red">~</span> :r .</code>
+          <li><code><span class="red">&lt;&lt; </span>s :p :o<span class="red"> >></span> a :Q .</code> | <code><span class="red">&lt;&lt; </span>s :p :o <span class="red">~</span> :r<span class="red"> >></span> .</code>
         </ul>
       <li class="next">
         Reifiers of different <code>rdf:type</code>s, for qualification and provenance:

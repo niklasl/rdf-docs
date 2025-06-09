@@ -30,6 +30,10 @@ pre, code { font-variant-ligatures: none; }
   color: #28b;
 }
 
+.red {
+  color: #a23;
+}
+
 .brown {
   color: #d61;
 }
