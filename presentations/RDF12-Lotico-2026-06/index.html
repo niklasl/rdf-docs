@@ -459,7 +459,7 @@ _:r1 a :Purchase ;
     <pre class="numbered note">
 &lt;OnTheStateOfThings> a :Text ;
   :author &lt;Alice> ;
-  :dateCreated "2025-05-20".
+  :dateCreated "2025-05".
 
 &lt;Alice> a :Person ;
   :affiliation &lt;HardknockSchool> .</pre>
@@ -470,7 +470,7 @@ _:r1 a :Purchase ;
   :contribution [ a :Contribution ;
       :agent &lt;Alice> ;
       :affiliation &lt;HardknockSchool> ;
-      :date "2025-05-20" ] .
+      :date "2025-05" ] .
 
 &lt;Alice> a :Person .</pre>
     </div>
@@ -478,7 +478,7 @@ _:r1 a :Purchase ;
     <pre class="numbered note next">
 &lt;OnTheStateOfThings> a :Text ;
   :author &lt;Alice> <span class="blue">{|</span> :affiliation &lt;HardknockSchool> <span class="blue">|}</span> ;
-  :dateCreated "2025-05-20".
+  :dateCreated "2025-05".
 
 &lt;Alice> a :Person .</pre>
   </section>
@@ -487,23 +487,27 @@ _:r1 a :Purchase ;
     <h2 class="nowrap">Continued: Annotated Affiliations</h2>
     <pre class="numbered note">
 &lt;Alice> a :Person ;
-  :affiliation &lt;HardknockSchool> <span class="blue">~</span> &lt;ctb1> ,
-    &lt;TranscendentUniversity> <span class="blue">~</span> &lt;ctb2> .
+  :affiliation &lt;HardknockSchool> <span class="blue">~</span> <span class="yellowbg">&lt;ctb1></span> ,
+    &lt;TranscendentUniversity> <span class="blue">~</span> <span class="greenbg">&lt;ctb2></span> .
 
 &lt;OnTheStateOfThings> a :Text ;
-  :author &lt;Alice> <span class="blue">~</span> &lt;ctb1> .
+  :author &lt;Alice> <span class="blue">~</span> <span class="yellowbg">&lt;ctb1></span> .
 
 &lt;OnTheChangeOfPatterns> a :Text ;
-  :author &lt;Alice> <span class="blue">~</span> &lt;ctb2> ,
-    &lt;Lenny> <span class="blue">~</span> &lt;ctb2> .</pre>
+  :author &lt;Alice> <span class="blue">~</span> <span class="greenbg">&lt;ctb2></span> ,
+    &lt;Lenny> <span class="blue">~</span> <span class="greybg">&lt;ctb3></span> .</pre>
 
     <div class="side">
-    <pre class="note next" style="margin: 4em 1em 0 5em">
-&lt;ctb1> a :Contribution ;
-  :date "2025-05-20".
+    <pre class="note" style="margin: 8em 1em 0 5em">
+<span class="yellowbg">&lt;ctb1></span> a :Contribution ;
+  :date "2025-05".
 
-&lt;ctb2> a :Contribution ;
-  :date "2036-10-17".</pre>
+<span class="greenbg">&lt;ctb2></span> a :Contribution ;
+  :date "2036-10".
+
+<span class="greybg">&lt;ctb3></span> a :Contribution ;
+  :role rel:win, rel:wst ;
+  :date "2036-11".</pre>
     </div>
   </section>
 
