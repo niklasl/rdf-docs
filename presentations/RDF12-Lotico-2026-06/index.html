@@ -19,7 +19,7 @@
   <section class="slide">
     <h2>RDF 1.2</h2>
     <ul>
-      <li>Lots of qualify improvements in the 18+ documents involved (including SPARQL).
+      <li>Lots of qualify improvements in the ~20 documents involved (including SPARQL).
       <li>New <code>rdf:JSON</code> datatype.
       <li>Initial text direction for language literals (<code>rdf:dirLangString</code>).
       <li><em>Triples as objects ("new-style reification").</em>
@@ -33,7 +33,7 @@
           alt="">
     <pre class="note">&lt;Alice> :bought &lt;LennyTheLion> .</pre>
     <p>Forms a logical proposition.
-      <h3>A Graph is A Set of Triples</h3>
+      <h3>A Graph is a Set of Triples</h3>
     <p>When interpreted, these are the facts of the interpretation.
   </section>
 
@@ -45,6 +45,10 @@
       <li>Qualification</li>
       <li>Suggestions or beliefs</li>
     </ul>
+    <div class="next">
+      <h3>Traditional Solution</h3>
+      <p>More granular remodelling.
+    </div>
     <img class="side"
          src="triple1-annot-qual.svg"
          alt="">
@@ -52,7 +56,7 @@
 
   <section class="slide side right">
     <h2 class="nowrap">Labelled Property Graphs</h2>
-    <p>Nodes with properties; edges between nodes.
+    <p>Nodes with attributes; edges between nodes.
     <p>Edges can have properties too.
     <pre class="note">(:ALICE) -[:BOUGHT {date: "2014-06"}]-> (:LENNY_THE_LION)</pre>
   </section>
@@ -75,11 +79,12 @@
   <section class="slide side right big">
     <h2 class="nowrap">LPGs from an RDF Point of View</h2>
     <div class="side">
-    <br>
-    <br>
-    <p>Each edge, even those with the same label,<br> is unique!
-    <p>Not encodable as sets of triples. Rather, "multisets" of triples.
-    <p>No model-theoretic semantics (no formal entailments).
+      <br>
+      <br>
+      <p>Each edge, even those with the same label,<br> is unique!
+      <p>Not encodable as sets of triples. Rather, "multisets" of triples.
+      <p>(No model-theoretic semantics&mdash;no formal entailments).
+      </div>
     </div>
     <pre class="numbered note">(:ALICE)
   -[:BOUGHT {date: "2014-06"}]->
@@ -169,10 +174,12 @@
   <section class="slide">
     <h2>RDF 1.2: Propositions &amp; Reifiers</h2>
     <p>A triple denotes an <code>rdfs:Proposition</code>.
-    <p>(Transparent semantics. A "use", not a <code>"mention"@en</code>.)
+    <p>(Transparent semantics. Its <i>sense</i>, not its <code>"encoding"</code>.)
     <p>If the triple is in the graph, it encodes a fact in the interpretation.
-    <p>A <em>reifier</em> is anything relating to a proposition using <code>rdf:reifies</code>.
-    <p>The reifier can be a token of data, an event, circumstance, situation, context, etc.
+    <div class="next">
+      <p>A <em>reifier</em> is anything relating to a proposition using <code>rdf:reifies</code>.
+      <p>The reifier can be a token of data, an event, circumstance, situation, context, etc.
+    </div>
   </section>
 
   <section class="slide">
@@ -356,8 +363,8 @@ _:b2 :date 1610 .</pre>
       <li>simplified relations sometimes needing more contextual detail.
     </ul>
     <p>Different modelling choices lead to different <em>perspectives</em>.
-    <br>In many cases singular triples need to be reified.
-    <br>But some may be of multiple triples at once.
+    <br>In many cases single propositions need to be reified.
+    <br>But some may be of multiple propositions at once.
   </section>
 
   <section class="slide side right big">
@@ -369,22 +376,16 @@ _:b2 :date 1610 .</pre>
       <br>
       <br>
     <pre class="numbered note">
-<span class="brown">GRAPH &lt;model-1> {</span>
   &lt;Alice> :name "Alice Liddell" <span class="blue">~</span> &lt;nrx> .
 
   &lt;nrx> a :NameRecord ;
-    :date "1852" .
-<span class="brown">}</span></pre>
+    :date "1852" .</pre>
     <pre class="numbered note">
-<span class="brown">GRAPH &lt;model-2> {</span>
   &lt;Alice> :givenName "Alice" <span class="blue">~</span> &lt;nrx> ;
     :familyName "Liddell" <span class="blue">~</span> &lt;nrx> .
 
   &lt;nrx> a :NameRecord ;
-    :date "1852" .
-<span class="brown">}</span></pre>
-      </div>
-  </section>
+      </section>
 
   <section class="slide side right big">
     <h2 class="nowrap">Continued: Wikidata</h2>
@@ -510,6 +511,17 @@ _:r1 a :Purchase ;
     <h2>Named Graphs?</h2>
   </section>
 
+  <section class="slide">
+    <h2>Datasets</h2>
+    <p>There are <em>no defined semantics for datasets</em>.
+    <br>The name <em>does not</em> (necessarily) denote the graph (set of triples).
+    <p>A dataset is one default graph and a set of <em>name, graph pairs</em> (where the names are unique).
+    <div class="next">
+      <h3>Named Graphs Do Not Nest</h3>
+      <p>You can partition data into named graphs according to different schemes. Whether you bundle reifiers in the same named graph as the triples they reify, or partition them separately, is an <em>orthogonal</em> concern.
+    </div>
+  </section>
+
   <section class="slide side right big">
     <h2 class="nowrap">Looks Like a Graph?</h2>
     <pre class="numbered note">
@@ -555,17 +567,6 @@ _:r1 a :Purchase ;
          src="triple2-annot-qual.svg"
          alt="">
     <p class="note nowrap">(Note also that a set of one triple is not a proposition.)
-  </section>
-
-  <section class="slide">
-    <h2>Datasets</h2>
-    <p>There are <em>no defined semantics for datasets</em>.
-    <br>The name <em>does not</em> (necessarily) denote the graph (set of triples).
-    <p>A dataset is one default graph and a set of <em>name, graph pairs</em> (where the names are unique).
-    <div class="next">
-      <h3>Named Graphs Do Not Nest</h3>
-      <p>You can partition data into named graphs according to different schemes. Whether you bundle reifiers in the same named graph as the triples they reify, or partition "footnotes" separately, is an <em>orthogonal</em> concern.
-    </div>
   </section>
 
   <section class="slide">
