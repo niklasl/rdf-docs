@@ -166,20 +166,28 @@
          src="triple1-reifier-unasserted-blank.svg"
          alt="">
     <p>Triples are now allowed as <em>objects in other triples</em>. (I.e., as <em>terms</em> alongside IRIs, bnodes and literals.)
-    <p class="next nowrap">Triples <em>denote</em> abstract logical <em>propositions</em>.
+    <p class="next nowrap">Triple terms <em>denote</em> abstract logical <em>propositions</em>.
     <p class="note nowrap next">
       <i>(Cf. how literals denote resources in the <em>value space</em> of the datatype.)</i>
   </section>
 
-  <section class="slide">
-    <h2>RDF 1.2: Propositions &amp; Reifiers</h2>
+  <section class="slide side right">
+    <h2 class="nowrap">RDF 1.2: Propositions &amp; Reifiers</h2>
     <p>A triple denotes an <code>rdfs:Proposition</code>.
     <p>(Transparent semantics. Its <i>sense</i>, not its <code>"encoding"</code>.)
-    <p>If the triple is in the graph, it encodes a fact in the interpretation.
-    <div class="next">
-      <br>
+    <p>If the triple is in the graph, it encodes
+      <br>a fact in the interpretation.
+    <div class="next" style="position: absolute; top: 5.5em; right: 5em; width: 12em; padding: 0.2em 0.4em; border: 1pt solid #ccc; border-radius: 0.3em; box-shadow: 0 2px 3px #0007">
+      <i class="note">The set of propositions:</i>
+      <pre class="note">IPR(I) = { RE(x, y, z)｜
+      x ∈ IR, y ∈ IP, z ∈ IR }</pre>
+      <i class="note">The set of facts:</i>
+      <pre class="note">F(I) = { RE(x, y, z)｜
+            &lt;x, z> ∈ IEXT(y) }</pre>
+    </div>
+    <div class="next nowrap">
       <p>A <em>reifier</em> is anything relating to a proposition using <code>rdf:reifies</code>.
-      <p>The reifier can be a token of data, an event, circumstance, situation, context, etc.
+      <p>The reifier can be a data token, an event, circumstance, situation, context, etc.
     </div>
   </section>
 
@@ -439,6 +447,11 @@ _:b2 :date 1610 .</pre>
 &lt;Alice> a :Person .</pre>
   </section>
 
+<!--
+<span class="red">&lt;&lt;</span> &lt;Alice>
+  :affiliation
+    &lt;HardknockSchool> <span class="red">~</span> <span class="yellowbg">&lt;ctb1></span> <span class="red">>></span> .
+-->
   <section class="slide side right big">
     <h2 class="nowrap">Continued: Annotated Affiliations</h2>
     <pre class="numbered note">
