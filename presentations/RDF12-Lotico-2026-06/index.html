@@ -249,7 +249,6 @@ _:b2 :date 1610 .</pre>
 
   <section class="slide">
     <h2>Metaphor: Marginalia</h2>
-    <!-- https://github.com/w3c/rdf-star-wg/issues/128 -->
     <p>Fact: The earth revolves around the sun. <sup>[1] [2] [3]</sup>
     <ol class="note">
       <li>Galileo proposed that in 1610.
@@ -412,9 +411,70 @@ _:b2 :date 1610 .</pre>
       </section>
 
   <section class="slide side right big">
-    <h2 class="nowrap">Reifying Multiple Triples?</h2>
+    <h2 class="nowrap">Case: Affiliated Author</h2>
+    <pre class="numbered note">
+&lt;OnTheStateOfThings> a :Text ;
+  :author &lt;Alice> ;
+  :dateCreated "2025-05".
+
+&lt;Alice> a :Person ;
+  :affiliation &lt;HardknockSchool> .</pre>
+
+    <div class="side">
+    <pre class="numbered note next" style="margin-top: 4em">
+&lt;OnTheStateOfThings> a :Text ;
+  :contribution [ a :Contribution ;
+      :agent &lt;Alice> ;
+      :affiliation &lt;HardknockSchool> ;
+      :date "2025-05" ] .
+
+&lt;Alice> a :Person .</pre>
+    </div>
+
+    <pre class="numbered note next">
+&lt;OnTheStateOfThings> a :Text ;
+  :author &lt;Alice> <span class="red">{|</span> :affiliation &lt;HardknockSchool> <span class="red">|}</span> ;
+  :dateCreated "2025-05".
+
+&lt;Alice> a :Person .</pre>
+  </section>
+
+  <section class="slide side right big">
+    <h2 class="nowrap">Continued: Annotated Affiliations</h2>
+    <pre class="numbered note">
+<span class="red">&lt;&lt;</span> &lt;Alice>
+  :affiliation &lt;HardknockSchool> <span class="red">~</span> <span class="yellowbg">&lt;ctb1></span> ,
+    &lt;TranscendentUniversity> <span class="red">~</span> <span class="greenbg">&lt;ctb2></span> .
+
+&lt;Alice> a :Person ;
+  :affiliation
+    &lt;TranscendentUniversity> <span class="red">~</span> <span class="greenbg">&lt;ctb2></span> .
+
+&lt;OnTheStateOfThings> a :Text ;
+  :author &lt;Alice> <span class="red">~</span> <span class="yellowbg">&lt;ctb1></span> .
+
+&lt;OnTheChangeOfPatterns> a :Text ;
+  :author &lt;Alice> <span class="red">~</span> <span class="greenbg">&lt;ctb2></span> ,
+    &lt;Lenny> <span class="red">~</span> <span class="brownbg">&lt;ctb3></span> .</pre>
+
+    <div class="side">
+    <pre class="note" style="margin: 8em 1em 0 5em">
+<span class="yellowbg">&lt;ctb1></span> a :Contribution ;
+  :date "2025-05".
+
+<span class="greenbg">&lt;ctb2></span> a :Contribution ;
+  :date "2036-10".
+
+<span class="brownbg">&lt;ctb3></span> a :Contribution ;
+  :role rel:win, rel:wst ;
+  :date "2036-11".</pre>
+    </div>
+  </section>
+
+  <section class="slide side right big">
+    <h2 class="nowrap">Augmented Simplicity?</h2>
     <p>Previously, a <code>bought</code> relationship was qualified as a <code>Purchase</code> with a <code>seller</code>.
-    <p>But if the intial data was simpler (or more "naive"), a <code>sold</code> relation might have been used.
+    <p>But the initial data might have been modelled differently, with a ("too") simple <code>sold</code> relation already present.
     <img class="side" src="triple1-annot-qual.svg" alt="">
   </section>
 
@@ -455,64 +515,7 @@ _:r1 a :Purchase ;
 :bought owl:propertyChainAxiom ([owl:inverseOf :buyer] :item) .
 :sold owl:propertyChainAxiom ([owl:inverseOf :seller] :item) .</pre>
     <p>If you can afford to use OWL...
-    <p class="note">(There may be a path through basic encoding. Watch this space.)
-  </section>
-
-  <section class="slide side right big">
-    <h2 class="nowrap">Case: Affiliated Author</h2>
-    <pre class="numbered note">
-&lt;OnTheStateOfThings> a :Text ;
-  :author &lt;Alice> ;
-  :dateCreated "2025-05".
-
-&lt;Alice> a :Person ;
-  :affiliation &lt;HardknockSchool> .</pre>
-
-    <div class="side">
-    <pre class="numbered note next" style="margin-top: 4em">
-&lt;OnTheStateOfThings> a :Text ;
-  :contribution [ a :Contribution ;
-      :agent &lt;Alice> ;
-      :affiliation &lt;HardknockSchool> ;
-      :date "2025-05" ] .
-
-&lt;Alice> a :Person .</pre>
-    </div>
-
-    <pre class="numbered note next">
-&lt;OnTheStateOfThings> a :Text ;
-  :author &lt;Alice> <span class="red">{|</span> :affiliation &lt;HardknockSchool> <span class="red">|}</span> ;
-  :dateCreated "2025-05".
-
-&lt;Alice> a :Person .</pre>
-  </section>
-
-  <section class="slide side right big">
-    <h2 class="nowrap">Continued: Annotated Affiliations</h2>
-    <pre class="numbered note">
-&lt;Alice> a :Person ;
-  :affiliation &lt;HardknockSchool> <span class="red">~</span> <span class="yellowbg">&lt;ctb1></span> ,
-    &lt;TranscendentUniversity> <span class="red">~</span> <span class="greenbg">&lt;ctb2></span> .
-
-&lt;OnTheStateOfThings> a :Text ;
-  :author &lt;Alice> <span class="red">~</span> <span class="yellowbg">&lt;ctb1></span> .
-
-&lt;OnTheChangeOfPatterns> a :Text ;
-  :author &lt;Alice> <span class="red">~</span> <span class="greenbg">&lt;ctb2></span> ,
-    &lt;Lenny> <span class="red">~</span> <span class="brownbg">&lt;ctb3></span> .</pre>
-
-    <div class="side">
-    <pre class="note" style="margin: 8em 1em 0 5em">
-<span class="yellowbg">&lt;ctb1></span> a :Contribution ;
-  :date "2025-05".
-
-<span class="greenbg">&lt;ctb2></span> a :Contribution ;
-  :date "2036-10".
-
-<span class="brownbg">&lt;ctb3></span> a :Contribution ;
-  :role rel:win, rel:wst ;
-  :date "2036-11".</pre>
-    </div>
+    <p class="note">(There may be a path through the form of basic encoding. Watch this space.)
   </section>
 
   <section class="cover slide clear">
