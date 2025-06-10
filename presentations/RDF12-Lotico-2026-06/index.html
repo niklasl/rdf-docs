@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en-us">
+ <head>
+  <meta charset=UTF-8>
+  <meta content="width=device-width" name="viewport">
+    <title>RDF12-Lotico-2026-06</title>
+  <link rel="stylesheet" href="humaaans.css">
+  <link rel="stylesheet" href="tweaks.css">
+  <script src="https://www.w3.org/2024/Talks/TPAC/Templates/b6plus.js"></script>
+ </head>
+ <body class="lightmode shower fade-in emerge duration=1">
+
+  <section class="slide cover clear">
+   <h1>RDF 1.2: Reifying Propositions</h1>
+    <address>Lotico event 10 June 2025</address>
+    <p>Niklas Lindström, National Library of Sweden | RDF &amp; SPARQL WG
+  </section>
+
+  <section class="slide">
+    <h2>RDF 1.2</h2>
+    <ul>
+      <li>Lots of quality improvements in the ~20 documents involved (including SPARQL).
+      <li>New <code>rdf:JSON</code> datatype.
+      <li>Initial text direction for language literals (<code>rdf:dirLangString</code>).
+      <li><em>Triples as objects ("new-style reification").</em>
+    </ul>
+  </section>
+
+  <section class="slide side right big">
+    <h2 class="nowrap">RDF: A <i>Simple</i> Triple</h2>
+    <img class="side"
+          src="stmt1.svg"
+          alt="">
+    <pre class="note">&lt;Alice> :bought &lt;LennyTheLion> .</pre>
+    <p>Forms a logical proposition.
+      <h3>A Graph is a Set of Triples</h3>
+    <p>When interpreted, these are the facts of the interpretation.
+  </section>
+
+  <section class="slide side right big">
+    <h2 class="nowrap">Challenging Use Cases</h2>
+    <p>Expressing circumstantial information, like:
+    <ul>
+      <li>Source provenance</li>
+      <li>Qualification</li>
+      <li>Suggestions or beliefs</li>
+    </ul>
+    <div class="next">
+      <h3>Traditional Solution</h3>
+       <p class="nowrap">More granular remodelling. (Classic reification. The PROV ontology.)
+    </div>
+    <img class="side"
+         src="triple1-annot-qual.svg"
+         alt="">
+  </section>
+
+  <section class="slide side right">
+    <h2 class="nowrap">Labelled Property Graphs</h2>
+    <p>Nodes with attributes; edges between nodes.
+    <p>Edges can have properties too.
+    <pre class="note">(:ALICE) -[:BOUGHT {date: "2014-06"}]-> (:LENNY_THE_LION)</pre>
+  </section>
+
+  <section class="slide">
+    <h2>RDF-star</h2>
+    <p class="note">Motivations: alignment with LPGs (properties on edges) &amp; statements about statements.
+    <ul>
+      <li>2014: Foundations of RDF* and SPARQL* (Olaf Hartig)
+        <pre class="note"> <span class="red">&lt;&lt;</span> &lt;Alice> :bought &lt;LennyTheLion> <span class="red">>></span> :date "2014-06" .</pre>
+      <li>2020: CG formed
+      <li>2021: CG report
+        <pre class="note">&lt;Alice> :bought &lt;LennyTheLion> <span class="red">{|</span> :date "2014-06" <span class="red">|}</span> .</pre>
+      <li>Feedback (e-mail; github)
+      <li>2022: WG formed
+      <li>2026: <span class="linethrough">RDF-star</span> &rarr; RDF 1.2
+    </ul>
+  </section>
+
+  <section class="slide side right big">
+    <h2 class="nowrap">LPGs from an RDF Point of View</h2>
+    <div class="side">
+      <br>
+      <br>
+      <p>Each edge, even those with the same label,<br> is unique!
+      <p>Not encodable as sets of triples. Rather, "multisets" of triples.
+      <p>(No model-theoretic semantics&mdash;no formal entailments).
+      </div>
+    </div>
+    <pre class="numbered note">(:ALICE)
+  -[:BOUGHT {date: "2014-06"}]->
+      (:LENNY_THE_LION)
+
+(:ALICE)
+  -[:BOUGHT {date: "2014-12"}]->
+      (:LENNY_THE_LION)</pre>
+    <pre class="numbered note next">&lt;Alice> :bought &lt;LennyTheLion>
+      <span class="red">{|</span> :date "2014-06" ;
+         :seller &lt;ToyStore> <span class="red">|}</span> .
+
+&lt;Alice :bought &lt;LennyTheLion>
+      <span class="red">{|</span> :date "2014-12" ;
+         :seller &lt;Market> <span class="red">|}</span> .</pre>
+  </section>
+
+  <section class="slide big side right">
+    <h2 class="nowrap"><span class="linethrough">Multisets</span>~ Occurrences</h2>
+    <pre class="numbered note">&lt;Alice> :bought &lt;LennyTheLion>
+      <span class="red">{|</span> :date "2014-06" ;
+         :seller &lt;ToyStore> <span class="red">|}</span> .
+      <span class="red">{|</span> :date "2014-12" ;
+         :seller &lt;Market> <span class="red">|}</span> .</pre>
+    <img class="side"
+        src="triple1-annot-qual2.svg"
+        alt="">
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>A Triple Is an Abstraction</h2>
+    <pre class="numbered note">
+&lt;Florens> :connectedTo &lt;Rome>
+              <span class="red">{|</span> a :Route ;
+                :road &lt;A1> ;
+                :distance "276"^^:KM <span class="red">|}</span>
+              <span class="red">{|</span> a :Route ;
+                :road &lt;RaccordoAutostradaleFirenze-Siena-A1> ;
+                :distance "309"^^:KM <span class="red">|}</span> . </pre>
+  </section>
+
+  <style>
+    .triptyk img {
+      object-fit: contain;
+      position: absolute;
+      width: 25%;
+      height: 65%;
+      padding: 0;
+      box-shadow: 0 0 4px #111;
+      z-index: -2;
+    }
+    .triptyk img:nth-of-type(1) { margin-left: 0% }
+    .triptyk img:nth-of-type(2) { margin-left: 28%; z-index: -1 }
+    .triptyk img:nth-of-type(3) { margin-left: 56% }
+  </style>
+  <section class="slide triptyk">
+    <h2>The Map is Not the Territory</h2>
+    <img src="road_to_rome-1.png" alt="">
+    <img class="next" src="road_to_rome-2.png" alt="">
+    <img class="next" src="road_to_rome-3.png" alt="">
+    <div class="next">
+      <img style="position: absolute; right: 8%; top: 20%; height: 35.5%" src="rome_metro.avif">
+      <p class="place bottom right note">
+        Source: <a href="https://www.openstreetmap.org/directions?engine=graphhopper_car&route=43.7761%2C11.2569%3B41.8933203%2C12.4829321#map=11/42.0047/12.3315">OpenStreetMap</a>
+        &amp;
+        <a href="https://www.rome.info/transport/public-transport/metro/">Rome.info</a>
+    </div>
+  </section>
+
+  <section class="cover slide clear">
+    <h2>Concepts &amp; Semantics</h2>
+  </section>
+
+  <section class="slide side right big">
+    <h2 class="nowrap">RDF 1.2: Triples as Objects</h2>
+    <pre class="numbered note">[] <span class="red">rdf:reifies</span> <span class="blue">&lt;&lt;( &lt;Alice> :bought &lt;LennyTheLion> )>></span> .</pre>
+    <img class="side"
+         src="triple1-reifier-unasserted-blank.svg"
+         alt="">
+    <p>Triples are now allowed as <em>objects of other triples</em>. (I.e., as <em>terms</em> alongside IRIs, bnodes and literals.)
+    <p class="next nowrap">Triple terms <em>denote</em> abstract logical <em>propositions</em>.
+    <p class="note nowrap next">
+      <i>(Cf. how literals denote resources in the <em>value space</em> of the datatype.)</i>
+  </section>
+
+  <section class="slide side right">
+    <h2 class="nowrap">RDF 1.2: Propositions &amp; Reifiers</h2>
+    <p>A triple denotes an <code>rdfs:Proposition</code>.
+    <p>(Transparent semantics. Its <i>sense</i>, not its <code>"encoding"</code>.)
+    <p>If the triple is in the graph, it encodes
+      <br>a fact in the interpretation.
+    <div class="next" style="position: absolute; top: 5.5em; right: 5em; width: 12em; padding: 0.2em 0.4em; border: 1pt solid #ccc; border-radius: 0.3em; box-shadow: 0 2px 3px #0007">
+      <i class="note">The set of propositions:</i>
+      <pre class="note">IPR(I) = { RE(x, y, z)｜
+    x ∈ IR, y ∈ IP, z ∈ IR }</pre>
+      <i class="note">The set of facts:</i>
+      <pre class="note">F(I) = { RE(x, y, z)｜
+           &lt;x, z> ∈ IEXT(y) }</pre>
+    </div>
+    <div class="next nowrap">
+      <p>A <em>reifier</em> is anything relating to a proposition using <code>rdf:reifies</code>.
+      <p>The reifier can be a data token, an event, circumstance, situation, context, etc.
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>Other Designs Considered</h2>
+    <ul>
+    <li>Classic reification (<code>rdf:Statement</code> "tokens of triples"; now conceptually a subset of new-style reifiers)
+    <li>N-ary relationships (<em>more on that later</em>)
+    <li>Named graphs (<em>more on that later</em>)
+    <li>Singleton properties
+    <li>Triples as subjects
+    <li>Named triples
+    </ul>
+  </section>
+
+  <section class="slide side right big">
+    <h2 class="nowrap">RDF 1.2: Syntactic Sugar</h2>
+    <h3>Annotated Triples</h3>
+    <pre class="numbered note">&lt;Alice> :bought &lt;LennyTheLion>
+      <span class="red">{|</span> a rdfs:Resource <span class="red">|}</span> .</pre>
+    <img class="side"
+          src="triple1-annot-blank.svg"
+          alt="">
+    <div class="next">
+      <p>Expands to:
+      <pre class="numbered note">
+&lt;Alice> :bought &lt;LennyTheLion> .
+
+_:b1 a rdfs:Resource .
+_:b1 <span class="red">rdf:reifies</span> <span class="blue">&lt;&lt;( &lt;Alice> :bought &lt;LennyTheLion> )>></span> .</pre>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>A Reified Statement</h2>
+    <h3>Reifying Triples</h3>
+    <pre class="numbered note"><span class="red">&lt;&lt;</span> <span class="blue">:TheEarth :revolvesAround :TheSun</span> <span class="red">>></span> a :Statement ;
+  :source :Galileo ;
+  :date 1610 .</pre>
+    <div class="next">
+      <p>Expands to:
+      <pre class="numbered note">
+_:b2 <span class="red">rdf:reifies</span> <span class="blue">&lt;&lt;( :TheEarth :revolvesAround :TheSun )>></span> .
+_:b2 a :Statement .
+_:b2 :source :Galileo .
+_:b2 :date 1610 .</pre>
+    </div>
+  </section>
+
+  <section class="slide side right">
+    <h2>Naming Reifiers</h2>
+    <pre class="numbered note"><span class="red">&lt;&lt;</span> <span class="blue">&lt;Alice> :bought &lt;LennyTheLion></span> <span class="red">~</span> &lt;r1> <span class="red">>></span> .
+
+&lt;r1> a :Transaction .</pre>
+    <br>
+    <br>
+    <br>
+    <pre class="numbered note">&lt;Alice> :bought &lt;LennyTheLion> <span class="red">~</span> &lt;r2> .
+
+&lt;r2> a :Purchase .</pre>
+    <div class="side">
+      <br>
+      <img src="triple1-reifier-unasserted-blank.svg" alt="">
+      <img src="triple1-annot-blank.svg" alt="">
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>Metaphor: Marginalia</h2>
+    <p>Fact: The earth revolves around the sun. <sup>[1] [2] [3]</sup>
+    <ol class="note">
+      <li>Galileo proposed that in 1610.
+      <li>The church of old opposed that in 1633, on dogmatic grounds.
+      <li>In a relativistic world, this depends on the frame of reference.
+    </ol>
+    <div class="next">
+      Encoded:
+      <pre class="numbered note">
+:TheEarth :revolvesAround :TheSun <span class="red">~</span> &lt;#1> <span class="red">~</span> &lt;#2> <span class="red">~</span> &lt;#3> .
+
+&lt;#1> a :Statement ; :source :Galileo ; :date 1610 .
+&lt;#2> a :DogmaticDenial ; :source :ChurchOfOld ; :date 1633 .
+&lt;#3> a :ReferenceFrame ; :gravitationalSystemBoundary "..." . </pre>
+    </div>
+  </section>
+
+  <section class="cover slide clear">
+    <h2>Modelling Patterns</h2>
+  </section>
+
+  <section class="slide">
+    <h2>Kinds of Reifiers</h2>
+    <p>The <code>rdf:type</code> of the reifier determines its nature (may be implied by predicates).
+    <ul>
+      <li>References (utterances, source provenance).
+      <li>Circumstances (qualifying events or situations).
+    </ul>
+    <div class="next">
+      <p>Instances seen in the wild:
+      <p>
+        <code>rdf:Statement</code>,
+        <code>prov:Influence</code>,
+        <code>prov:Attribution</code>,
+        <code>sdo:Role</code>,
+        <code>bf:Publication</code>,
+        <code>bf:Contribution</code>...
+    </div>
+  </section>
+
+  <section class="slide side right big">
+    <h2>Provenance</h2>
+    <pre class="numbered note">
+&lt;Alice> :bought &lt;LennyTheLion> <span class="red">{|</span>
+    a :Transaction ;
+    :source :TXZ ;
+    :tstamp "0x66e"
+  <span class="red">|}</span> .</pre>
+    <img class="side"
+         src="triple1-annot-prov.svg"
+         alt="">
+  </section>
+
+  <section class="slide side right big">
+    <h2>Qualification</h2>
+    <pre class="numbered note">
+&lt;Alice> :bought &lt;LennyTheLion> <span class="red">{|</span>
+    a :Purchase ;
+    :seller &lt;ToyStore> ;
+    :date "2024-06"
+  <span class="red">|}</span> .</pre>
+    <img class="side"
+         src="triple1-annot-qual.svg"
+         alt="">
+  </section>
+
+  <section class="slide side right big">
+    <h2>Qualifications</h2>
+    <pre class="numbered note">
+&lt;Alice> :bought &lt;LennyTheLion> <span class="red">{|</span>
+    a :Purchase ;
+    :seller &lt;ToyStore> ;
+    :date "2024-06"
+  <span class="red">|}</span> <span class="red">{|</span>
+    a :Purchase ;
+    :seller &lt;Market> ;
+    :date "2024-12"
+  <span class="red">|}</span> .</pre>
+    <img class="side" src="triple1-annot-qual2.svg" alt="">
+  </section>
+
+  <section class="slide side right big">
+    <h2 class="nowrap">Case: Wikidata</h2>
+    <pre class="numbered note">
+&lt;Q59166653> a :Person ;
+  :name "Malgorzata Domino"@en ;
+  :alumniOf &lt;Q681>
+      <span class="red">{|</span> :academicDegree &lt;Q1862897> ;
+         :startDate "2005-10-01" ;
+         :endDate "2011-02-28" <span class="red">|}</span>
+      <span class="red">{|</span> :academicDegree &lt;Q950900> ;
+         :startDate "2011-10-01" ;
+         :endDate "2012-11-08" <span class="red">|}</span>
+      <span class="red">{|</span> :academicDegree &lt;Q752297> ;
+         :startDate "2011-03-08" ;
+         :endDate "2015-04-22" <span class="red">|}</span> .</pre>
+    <img class="side"
+         src="example-wd-alumni.svg"
+         alt="">
+  </section>
+
+  <section class="cover slide clear">
+    <h2>Advanced Patterns</h2>
+  </section>
+
+  <section class="slide side right big">
+    <h2 class="nowrap">Continued: Wikidata</h2>
+    <pre class="numbered note">
+&lt;Q59166653> sdo:alumniOf &lt;Q681> <span class="red">~</span> &lt;9220f5f6> <span class="red">~</span> &lt;ff2f0926> <span class="red">~</span> &lt;c495f198> .
+
+&lt;9220f5f6> :academicDegree &lt;Q1862897> ;
+  :describedBy &lt;https://pub.orcid.org/v3.0/0000-0001-9436-1074/education/6610842>
+      <span class="next"><span class="red">~</span> &lt;379d8fe5></span> .
+&lt;ff2f0926> :academicDegree &lt;Q950900> ;
+  :describedBy &lt;https://pub.orcid.org/v3.0/0000-0001-9436-1074/education/6610859>
+      <span class="next"><span class="red">~</span> &lt;379d8fe5></span> .
+&lt;c495f198> :academicDegree &lt;Q752297> ;
+  :describedBy &lt;https://pub.orcid.org/v3.0/0000-0001-9436-1074/education/6610892>
+      <span class="next"><span class="red">~</span> &lt;379d8fe5></span> .
+
+<span class="next">&lt;379d8fe5> a :DataExtraction ;
+  :statedIn &lt;ORCIDPublicDataFile2021> ;
+  :retrieved "+2021-11-05"^^xsd:date .</span></pre>
+  </section>
+
+  <section class="slide">
+    <h2>Varying Granularity</h2>
+    <p>Use cases show reifiers of varying type, granularity and scope.
+    <p>Examples include:
+    <ul>
+      <li>source tokens of granular provenance;
+      <li>simplified relations sometimes needing more contextual detail.
+    </ul>
+    <div class="next">
+      <p>Different modelling choices lead to different <em>perspectives</em>.
+      <br>In many cases single propositions need to be reified.
+      <br>But some may be of multiple propositions at once.
+    </div>
+  </section>
+
+  <section class="slide side right big">
+    <h2>Name Forms</h2>
+    <p>A simple example is the different models of person names.
+    <p>Some define just <code>name</code>. Others, <code>givenName</code> and <code>familyName</code>. Etc.
+    <p>A <code>NameRecord</code> may thus reify a single or multiple triples, depending on the modelling choice.
+    <div class="side">
+      <br>
+      <br>
+    <pre class="numbered note">
+  &lt;Alice> :name "Alice Liddell" <span class="red">~</span> &lt;nrx> .
+
+  &lt;nrx> a :NameRecord ;
+    :date "1852" .</pre>
+    <pre class="numbered note">
+  &lt;Alice> :givenName "Alice" <span class="red">~</span> &lt;nrx> ;
+    :familyName "Liddell" <span class="red">~</span> &lt;nrx> .
+
+  &lt;nrx> a :NameRecord ;
+    :date "1852" .</pre>
+      </section>
+
+  <section class="slide side right big">
+    <h2 class="nowrap">Case: Affiliated Author</h2>
+    <pre class="numbered note">
+&lt;OnTheStateOfThings> a :Text ;
+  :author &lt;Alice> ;
+  :dateCreated "2025-05".
+
+&lt;Alice> a :Person ;
+  :affiliation &lt;HardknockSchool> .</pre>
+
+    <div class="side">
+    <pre class="numbered note next" style="margin-top: 4em">
+&lt;OnTheStateOfThings> a :Text ;
+  :contribution [ a :Contribution ;
+      :agent &lt;Alice> ;
+      :affiliation &lt;HardknockSchool> ;
+      :date "2025-05" ] .
+
+&lt;Alice> a :Person .</pre>
+    </div>
+
+    <pre class="numbered note next">
+&lt;OnTheStateOfThings> a :Text ;
+  :author &lt;Alice> <span class="red">{|</span> :affiliation &lt;HardknockSchool> <span class="red">|}</span> ;
+  :dateCreated "2025-05".
+
+&lt;Alice> a :Person .</pre>
+  </section>
+
+<!--
+<span class="red">&lt;&lt;</span> &lt;Alice>
+  :affiliation
+    &lt;HardknockSchool> <span class="red">~</span> <span class="yellowbg">&lt;ctb1></span> <span class="red">>></span> .
+-->
+  <section class="slide side right big">
+    <h2 class="nowrap">Continued: Annotated Affiliations</h2>
+    <pre class="numbered note">
+<span class="red">&lt;&lt;</span> &lt;Alice>
+  :affiliation &lt;HardknockSchool> <span class="red">~</span> <span class="yellowbg">&lt;ctb1></span> ,
+    &lt;TranscendentUniversity> <span class="red">~</span> <span class="greenbg">&lt;ctb2></span> .
+
+&lt;Alice> a :Person ;
+  :affiliation
+    &lt;TranscendentUniversity> <span class="red">~</span> <span class="greenbg">&lt;ctb2></span> .
+
+&lt;OnTheStateOfThings> a :Text ;
+  :author &lt;Alice> <span class="red">~</span> <span class="yellowbg">&lt;ctb1></span> .
+
+&lt;OnTheChangeOfPatterns> a :Text ;
+  :author &lt;Alice> <span class="red">~</span> <span class="greenbg">&lt;ctb2></span> ,
+    &lt;Lenny> <span class="red">~</span> <span class="brownbg">&lt;ctb3></span> .</pre>
+
+    <div class="side">
+    <pre class="note" style="margin: 8em 1em 0 5em">
+<span class="yellowbg">&lt;ctb1></span> a :Contribution ;
+  :date "2025-05".
+
+<span class="greenbg">&lt;ctb2></span> a :Contribution ;
+  :date "2036-10".
+
+<span class="brownbg">&lt;ctb3></span> a :Contribution ;
+  :role rel:win, rel:wst ;
+  :date "2036-11".</pre>
+    </div>
+  </section>
+
+  <section class="slide side right big">
+    <h2 class="nowrap">Augmented Simplicity?</h2>
+    <p>Previously, a <code>bought</code> relationship was qualified as a <code>Purchase</code> with a <code>seller</code>.
+    <p>But the initial data might have been modelled differently, with a ("too") simple <code>sold</code> relation already present.
+    <img class="side" src="triple1-annot-qual.svg" alt="">
+  </section>
+
+  <section class="slide side right big">
+    <h2 class="nowrap">Compound Reifier</h2>
+    <pre class="numbered note">
+&lt;Alice>
+  :bought &lt;LennyTheLion> <span class="red">~</span> _:r1 .
+
+&lt;ToyStore>
+  :sold &lt;LennyTheLion> <span class="red">~</span> _:r1 .
+
+_:r1 a :Purchase ;
+  :date "2024-06".</pre>
+    <img class="side"
+         src="triple2-annot-qual.svg"
+         alt="">
+  </section>
+
+  <section class="slide side right big">
+    <h2 class="nowrap">N-ary Relationship?</h2>
+    <pre class="numbered note">
+_:r1 a :Purchase ;
+  :buyer &lt;Alice> ;
+  :seller &lt;ToyStore> ;
+  :item &lt;LennyTheLion> ;
+  :date "2024-06".</pre>
+
+    <p><a class="nowrap" href="https://www.w3.org/TR/swbp-n-aryRelations/">www.w3.org/TR/swbp-n-aryRelations</a>
+    <img class="side"
+         src="purchase-nary.svg"
+         alt="">
+  </section>
+
+  <section class="slide">
+    <h2 class="nowrap">(OWL Doesn't Force This Choice)</h2>
+    <pre class="numbered note">
+:bought owl:propertyChainAxiom ([owl:inverseOf :buyer] :item) .
+:sold owl:propertyChainAxiom ([owl:inverseOf :seller] :item) .</pre>
+    <p>If you can afford to use OWL...
+    <p class="note">(There may be a path through the form of basic encoding. Watch this space.)
+  </section>
+
+  <section class="cover slide clear">
+    <h2>Named Graphs?</h2>
+  </section>
+
+  <section class="slide">
+    <h2>Datasets</h2>
+    <p>There are <em>no defined semantics for datasets</em>.
+    <br>The name does not (necessarily) denote the graph (set of triples).
+    <p>A dataset is one default graph and a set of <em>name, graph pairs</em> (where the names are unique).
+    <div class="next">
+      <h3>Named Graphs Do Not Nest</h3>
+      <p>You can partition data into named graphs according to different schemes. Whether you bundle reifiers in the same named graph as the triples they reify, or partition them separately, is an <em>orthogonal</em> concern.
+    </div>
+  </section>
+
+  <section class="slide side right big">
+    <h2 class="nowrap">Looks Like a Graph?</h2>
+    <pre class="numbered note">
+&lt;Alice> :bought
+    &lt;LennyTheLion> <span class="red">~</span> _:r1 .
+
+:ToyStore :sold
+    &lt;LennyTheLion> <span class="red">~</span> _:r1 .
+
+_:r1 a :Purchase ;
+  :date "2024-06".</pre>
+    <p class="note nowrap">(Note that a graph is a set of triples.)
+    <img class="side"
+         src="subgraph-triple2-annot-qual.svg"
+         alt="">
+  </section>
+
+  <section class="slide side right big">
+    <h2 class="nowrap">Alice Knows a Set?</h2>
+    <pre class="numbered note">
+&lt;Alice> :knows &lt;Lenny>, &lt;Bob> .</pre>
+    <h3>No, Alice knows each person.</h3>
+    <pre class="numbered note">
+&lt;Alice> :knows &lt;Lenny> .
+&lt;Alice> :knows &lt;Bob> .</pre>
+    <img class="side"
+         src="subgraph-knows.svg"
+         alt="">
+  </section>
+
+  <section class="slide side right big">
+    <h2 class="nowrap">Reifies Each Proposition</h2>
+    <pre class="numbered note">
+&lt;Alice> :bought
+    &lt;LennyTheLion> <span class="red">~</span> _:r1 .
+
+:ToyStore :sold
+    &lt;LennyTheLion> <span class="red">~</span> _:r1 .
+
+_:r1 a :Purchase ;
+  :date "2024-06".</pre>
+    <img class="side"
+         src="triple2-annot-qual.svg"
+         alt="">
+    <p class="note nowrap">(Note also that a set of one triple is not a proposition.)
+  </section>
+
+  <section class="slide">
+    <h2 class="nowrap">Practical Graph Store Management</h2>
+    <h3>Different Use Cases</h3>
+    <ul>
+      <li>Named graphs: data management (graph stores, LDP).
+      <li>Reifiers: qualification and <em>detailed</em> provenance.
+    </ul>
+    <p>Provenance on the inside (the interpretation) or the outside (the dataset).
+    <div class="next">
+      <h3>More To This Story...</h3>
+      <ul>
+        <li>The triple structure is now <em>recursively</em> defined. (But <em>not cyclic</em>.)
+        <li><code>rdf:reifies</code> is but one relationship relating to propositions.
+      </ul>
+    </div>
+  </section>
+
+  <!--
+  <p>Granted, the intent of <i>some</i> named graphs may be "only" in-domain reification.
+  <p>Reifiers <i>might</i> be used for modal logic with a constant domain.
+  -->
+
+  <section class="cover slide clear">
+    <h2>Summary</h2>
+  </section>
+
+  <section class="slide">
+    <h2>RDF 1.2</h2>
+    <ul>
+      <li>
+        <em>Triples as objects</em> <span class="next">&rArr; referencing propositions <code><span class="blue">&lt;&lt;( :s :p :o )>></span></code>.</span>
+      <li>
+        Related to from reifying circumstances <span class="next">using <code>rdf:reifies</code>.</span>
+      <li class="next">
+        Syntactic sugar for annotating asserted triples and reifying claims:
+        <ul class="next">
+          <li><code>:s :p :o <span class="red">{|</span> a :Q <span class="red">|}</span> .</code> | <code>:s :p :o <span class="red">~</span> :r .</code>
+          <li><code><span class="red">&lt;&lt; </span>s :p :o<span class="red"> >></span> a :Q .</code> | <code><span class="red">&lt;&lt; </span>s :p :o <span class="red">~</span> :r<span class="red"> >></span> .</code>
+        </ul>
+      <li class="next">
+        Reifiers of different <code>rdf:type</code>s, for qualification and provenance:
+        <p class="next">
+          <code>rdf:Statement</code>,
+          <code>prov:Attribution</code>,
+          <code>prov:Influence</code>,
+          <code>sdo:Role</code>,
+          <code>bf:Publication</code>,
+          <code>bf:Contribution</code>...
+    </ul>
+  </section>
+
+</html>
