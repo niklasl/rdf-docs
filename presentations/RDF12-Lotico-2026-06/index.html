@@ -19,7 +19,7 @@
   <section class="slide">
     <h2>RDF 1.2</h2>
     <ul>
-      <li>Lots of qualify improvements in the ~20 documents involved (including SPARQL).
+      <li>Lots of quality improvements in the ~20 documents involved (including SPARQL).
       <li>New <code>rdf:JSON</code> datatype.
       <li>Initial text direction for language literals (<code>rdf:dirLangString</code>).
       <li><em>Triples as objects ("new-style reification").</em>
@@ -47,7 +47,7 @@
     </ul>
     <div class="next">
       <h3>Traditional Solution</h3>
-      <p>More granular remodelling.
+       <p class="nowrap">More granular remodelling. (Classic reification. The PROV ontology.)
     </div>
     <img class="side"
          src="triple1-annot-qual.svg"
@@ -166,9 +166,9 @@
          src="triple1-reifier-unasserted-blank.svg"
          alt="">
     <p>Triples are now allowed as <em>objects in other triples</em>. (I.e., as <em>terms</em> alongside IRIs, bnodes and literals.)
-    <p class="next">Triples both encode&mdash;as three-tuples&mdash;and <em>denote</em> abstract logical <em>propositions</em>.
-    <p class="note next nowrap">
-      <i>(Cf. how literals both encode and denote resources in the <em>value space</em> of the datatype.)</i>
+    <p class="next nowrap">Triples <em>denote</em> abstract logical <em>propositions</em>.
+    <p class="note nowrap next">
+      <i>(Cf. how literals denote resources in the <em>value space</em> of the datatype.)</i>
   </section>
 
   <section class="slide">
@@ -177,6 +177,7 @@
     <p>(Transparent semantics. Its <i>sense</i>, not its <code>"encoding"</code>.)
     <p>If the triple is in the graph, it encodes a fact in the interpretation.
     <div class="next">
+      <br>
       <p>A <em>reifier</em> is anything relating to a proposition using <code>rdf:reifies</code>.
       <p>The reifier can be a token of data, an event, circumstance, situation, context, etc.
     </div>
@@ -213,7 +214,7 @@ _:b1 <span class="red">rdf:reifies</span> <span class="blue">&lt;&lt;( &lt;Alice
   </section>
 
   <section class="slide">
-    <h2>Quoted Statements</h2>
+    <h2>A Reified Statement</h2>
     <h3>Reifying Triples</h3>
     <pre class="numbered note"><span class="red">&lt;&lt;</span> <span class="blue">:TheEarth :revolvesAround :TheSun</span> <span class="red">>></span> a :Statement ;
   :source :Galileo ;
@@ -243,6 +244,26 @@ _:b2 :date 1610 .</pre>
       <br>
       <img src="triple1-reifier-unasserted-blank.svg" alt="">
       <img src="triple1-annot-blank.svg" alt="">
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>Metaphor: Marginalia</h2>
+    <!-- https://github.com/w3c/rdf-star-wg/issues/128 -->
+    <p>Fact: The earth revolves around the sun. <sup>[1] [2] [3]</sup>
+    <ol class="note">
+      <li>Galileo proposed that in 1610.
+      <li>The church of old opposed that in 1633, on dogmatic grounds.
+      <li>In a relativistic world, this depends on the frame of reference.
+    </ol>
+    <div class="next">
+      Encoded:
+      <pre class="numbered note">
+:TheEarth :revolvesAround :TheSun <span class="red">~</span> &lt;#1> <span class="red">~</span> &lt;#2> <span class="red">~</span> &lt;#3> .
+
+&lt;#1> a :Statement ; :source :Galileo ; :date 1610 .
+&lt;#2> a :DogmaticDenial ; :source :ChurchOfOld ; :date 1633 .
+&lt;#3> a :ReferenceFrame ; :gravitationalSystemBoundary "..." . </pre>
     </div>
   </section>
 
@@ -310,26 +331,6 @@ _:b2 :date 1610 .</pre>
     <img class="side" src="triple1-annot-qual2.svg" alt="">
   </section>
 
-  <section class="slide">
-    <h2>Metaphor: Marginalia</h2>
-    <!-- https://github.com/w3c/rdf-star-wg/issues/128 -->
-    <p>Fact: The earth revolves around the sun. <sup>[1] [2] [3]</sup>
-    <ol>
-      <li>Galileo proposed that in 1610.
-      <li>The church of old opposed that in 1633, on dogmatic grounds.
-      <li>In a relativistic world, this depends on the frame of reference.
-    </ol>
-    <div class="next">
-      Encoded:
-      <pre class="numbered note">
-:TheEarth :revolvesAround :TheSun <span class="red">~</span> &lt;#1> <span class="red">~</span> &lt;#2> <span class="red">~</span> &lt;#3> .
-
-&lt;#1> a :Statement ; :source :Galileo ; :date 1610 .
-&lt;#2> a :DogmaticDenial ; :source :ChurchOfOld ; :date 1633 .
-&lt;#3> a :ReferenceFrame ; :gravitationalSystemBoundary "..." . </pre>
-    </div>
-  </section>
-
   <section class="slide side right big">
     <h2 class="nowrap">Case: Wikidata</h2>
     <pre class="numbered note">
@@ -354,39 +355,6 @@ _:b2 :date 1610 .</pre>
     <h2>Advanced Patterns</h2>
   </section>
 
-  <section class="slide">
-    <h2>Varying Granularity</h2>
-    <p>Use cases show reifiers of varying type, granularity and scope.
-    <p>Examples include:
-    <ul>
-      <li>source tokens of granular provenance;
-      <li>simplified relations sometimes needing more contextual detail.
-    </ul>
-    <p>Different modelling choices lead to different <em>perspectives</em>.
-    <br>In many cases single propositions need to be reified.
-    <br>But some may be of multiple propositions at once.
-  </section>
-
-  <section class="slide side right big">
-    <h2>Name Forms</h2>
-    <p>A simple example is the different models of person names.
-    <p>Some define just <code>name</code>. Others, <code>givenName</code> and <code>familyName</code>. Etc.
-    <p>A <code>NameRecord</code> may thus reify a single or multiple triples, depending on the modelling choice.
-    <div class="side">
-      <br>
-      <br>
-    <pre class="numbered note">
-  &lt;Alice> :name "Alice Liddell" <span class="red">~</span> &lt;nrx> .
-
-  &lt;nrx> a :NameRecord ;
-    :date "1852" .</pre>
-    <pre class="numbered note">
-  &lt;Alice> :givenName "Alice" <span class="red">~</span> &lt;nrx> ;
-    :familyName "Liddell" <span class="red">~</span> &lt;nrx> .
-
-  &lt;nrx> a :NameRecord ;
-      </section>
-
   <section class="slide side right big">
     <h2 class="nowrap">Continued: Wikidata</h2>
     <pre class="numbered note">
@@ -407,10 +375,46 @@ _:b2 :date 1610 .</pre>
   :retrieved "+2021-11-05"^^xsd:date .</span></pre>
   </section>
 
+  <section class="slide">
+    <h2>Varying Granularity</h2>
+    <p>Use cases show reifiers of varying type, granularity and scope.
+    <p>Examples include:
+    <ul>
+      <li>source tokens of granular provenance;
+      <li>simplified relations sometimes needing more contextual detail.
+    </ul>
+    <div class="next">
+      <p>Different modelling choices lead to different <em>perspectives</em>.
+      <br>In many cases single propositions need to be reified.
+      <br>But some may be of multiple propositions at once.
+    </div>
+  </section>
+
+  <section class="slide side right big">
+    <h2>Name Forms</h2>
+    <p>A simple example is the different models of person names.
+    <p>Some define just <code>name</code>. Others, <code>givenName</code> and <code>familyName</code>. Etc.
+    <p>A <code>NameRecord</code> may thus reify a single or multiple triples, depending on the modelling choice.
+    <div class="side">
+      <br>
+      <br>
+    <pre class="numbered note">
+  &lt;Alice> :name "Alice Liddell" <span class="red">~</span> &lt;nrx> .
+
+  &lt;nrx> a :NameRecord ;
+    :date "1852" .</pre>
+    <pre class="numbered note">
+  &lt;Alice> :givenName "Alice" <span class="red">~</span> &lt;nrx> ;
+    :familyName "Liddell" <span class="red">~</span> &lt;nrx> .
+
+  &lt;nrx> a :NameRecord ;
+    :date "1852" .</pre>
+      </section>
+
   <section class="slide side right big">
     <h2 class="nowrap">Reifying Multiple Triples?</h2>
     <p>Previously, a <code>bought</code> relationship was qualified as a <code>Purchase</code> with a <code>seller</code>.
-    <p>But if the intial data was simpler (or more "naive"), a <code>sold</code> relation might have been used. What then?
+    <p>But if the intial data was simpler (or more "naive"), a <code>sold</code> relation might have been used.
     <img class="side" src="triple1-annot-qual.svg" alt="">
   </section>
 
