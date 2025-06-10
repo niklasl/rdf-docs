@@ -165,7 +165,7 @@
     <img class="side"
          src="triple1-reifier-unasserted-blank.svg"
          alt="">
-    <p>Triples are now allowed as <em>objects in other triples</em>. (I.e., as <em>terms</em> alongside IRIs, bnodes and literals.)
+    <p>Triples are now allowed as <em>objects of other triples</em>. (I.e., as <em>terms</em> alongside IRIs, bnodes and literals.)
     <p class="next nowrap">Triple terms <em>denote</em> abstract logical <em>propositions</em>.
     <p class="note nowrap next">
       <i>(Cf. how literals denote resources in the <em>value space</em> of the datatype.)</i>
@@ -180,10 +180,10 @@
     <div class="next" style="position: absolute; top: 5.5em; right: 5em; width: 12em; padding: 0.2em 0.4em; border: 1pt solid #ccc; border-radius: 0.3em; box-shadow: 0 2px 3px #0007">
       <i class="note">The set of propositions:</i>
       <pre class="note">IPR(I) = { RE(x, y, z)｜
-      x ∈ IR, y ∈ IP, z ∈ IR }</pre>
+    x ∈ IR, y ∈ IP, z ∈ IR }</pre>
       <i class="note">The set of facts:</i>
       <pre class="note">F(I) = { RE(x, y, z)｜
-            &lt;x, z> ∈ IEXT(y) }</pre>
+           &lt;x, z> ∈ IEXT(y) }</pre>
     </div>
     <div class="next nowrap">
       <p>A <em>reifier</em> is anything relating to a proposition using <code>rdf:reifies</code>.
@@ -538,7 +538,7 @@ _:r1 a :Purchase ;
   <section class="slide">
     <h2>Datasets</h2>
     <p>There are <em>no defined semantics for datasets</em>.
-    <br>The name <em>does not</em> (necessarily) denote the graph (set of triples).
+    <br>The name does not (necessarily) denote the graph (set of triples).
     <p>A dataset is one default graph and a set of <em>name, graph pairs</em> (where the names are unique).
     <div class="next">
       <h3>Named Graphs Do Not Nest</h3>
