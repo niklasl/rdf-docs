@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en-us">
+ <head>
+  <meta charset=UTF-8>
+  <meta content="width=device-width" name="viewport">
+  <title>RDF 1.2 &amp; JSON-LD @ TPAC 2026</title>
+  <link rel="stylesheet" href="https://www.w3.org/2026/Talks/TPAC/Templates/slides.css">
+  <link rel="stylesheet" href="../../RDF-reifiers-1/tweaks.css">
+  <script src="https://www.w3.org/2026/Talks/TPAC/Templates/b6plus.js"></script>
+ </head>
+ <body class="lightmode shower fade-in duration=1">
+
+  <section class="slide cover clear">
+   <h1>RDF &amp; SPARQL 1.2 WG</h1>
+   <h2>RDF 1.2 &amp; JSON-LD</h2>
+   <p class="note">Niklas Lindström, National Library of Sweden
+  </section>
+
+
+  <section class="slide">
+    <h2>JSON-LD &mdash; planned new versions</h2>
+    <ul>
+      <li>
+        JSON-LD 1.2:
+        <ul>
+          <li>errata (including substantial fixes)
+            <li>adapting JSON-LD <code>@direction</code> to <b>RDF 1.2 base direction</b> (<code>rdf:dirLangString</code>)
+          <li>Best practices with external context security considerations
+        </ul>
+      <li>JSON-LD 1.3:
+        <p>Support for <b>RDF 1.2 triple terms</b>
+        <ul>
+          <li>Annotation using: <code>@annotation</code>
+          <li>Reifiers and triple terms: see 
+            <a href="https://github.com/json-ld/json-ld-star/issues/49">tracking issue</a>
+        </ul>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Previous work</h2>
+    <p>JSON-LD-star: <a href="https://github.com/json-ld/json-ld-star">github.com/json-ld/json-ld-star</a></p>
+  </section>
+
+  <section class="slide side right big">
+    <h2>RDF Annotation</h2>
+    <pre class="numbered note">
+&lt;Alice> :bought &lt;LennyTheLion> <span class="blue">{|</span>
+    a :Purchase ;
+    :seller &lt;ToyStore> ;
+    :date "2026-10"
+  <span class="blue">|}</span> .</pre>
+    <img class="side"
+         src="../../RDF-reifiers-1/triple1-annot-qual.svg"
+         alt="">
+  </section>
+
+  <section class="slide side right big">
+    <h2>Plain assertion</h2>
+    <pre class="numbered note">
+&lt;Alice> :bought &lt;LennyTheLion> .</pre>
+    <div class="side">
+      <pre class="numbered note">{
+  "@id": "Alice",
+  "bought": {
+    "@id": "LennyTheLion"
+  }
+}</pre>
+    </div>
+  </section>
+
+  <section class="slide side right big">
+    <h2>Annotation&nbsp;Sugar</h2>
+    <pre class="numbered note">
+&lt;Alice> :bought &lt;LennyTheLion> <span class="blue">{|</span>
+    a :Purchase ;
+    :seller &lt;ToyStore> ;
+    :date "2026-10"
+  <span class="blue">|}</span> .</pre>
+    <div class="side">
+      <pre class="numbered note">
+{
+  "@id": "Alice",
+  "bought": {
+    "@id": "LennyTheLion",
+    <span class="blue">"@annotation"</span>: {
+      "seller": {"@id": "ToyStore"},
+      "date": "2026-10"
+    <span class="blue">}</span>
+  }
+}</pre>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>Early adopters (JSON-LD-star)</h2>
+    <ul>
+      <li>
+        <a href="https://omeka.org/s/docs/user-manual/content/item-sets/#value-annotation">Omeka S &mdash; value annotation</a>
+        (<a href="https://forum.omeka.org/t/importing-items-with-value-annotations/27511">example of importing</a>)
+      <li>
+        National Library of Sweden: Libris (Swepub subset)
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h2>Implementations (WIP)</h2>
+    <ul>
+      <li>
+        <a href="https://github.com/niklasl/trld/">TRLD</a>
+        <a href="https://github.com/niklasl/trld/pull/6">(tracking PR)</a>
+  </section>
+
+  <section class="slide final">
+    <h2>Thank You!</h2>
+    <p>Time for questions?
+  </section>
+
+ </body>
+</html>
