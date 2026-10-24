@@ -5,7 +5,7 @@
   <meta content="width=device-width" name="viewport">
   <title>RDF 1.2 &amp; JSON-LD @ TPAC 2026</title>
   <link rel="stylesheet" href="https://www.w3.org/2026/Talks/TPAC/Templates/slides.css">
-  <link rel="stylesheet" href="../../RDF-reifiers-1/tweaks.css">
+  <link rel="stylesheet" href="tweaks.css">
   <script src="https://www.w3.org/2026/Talks/TPAC/Templates/b6plus.js"></script>
  </head>
  <body class="lightmode shower fade-in duration=1">
@@ -52,7 +52,7 @@
     :date "2026-10"
   <span class="blue">|}</span> .</pre>
     <img class="side"
-         src="../../RDF-reifiers-1/triple1-annot-qual.svg"
+         src="triple1-annot-qual.svg"
          alt="">
   </section>
 
@@ -84,7 +84,8 @@
   "@id": "Alice",
   "bought": {
     "@id": "LennyTheLion",
-    <span class="blue">"@annotation"</span>: {
+    <span class="blue">"@annotation": {</span>
+      "@type": "Purchase",
       "seller": {"@id": "ToyStore"},
       "date": "2026-10"
     <span class="blue">}</span>
