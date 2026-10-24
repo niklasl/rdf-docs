@@ -25,7 +25,6 @@
         <ul>
           <li>errata (including substantial fixes)
             <li>adapting JSON-LD <code>@direction</code> to <b>RDF 1.2 base direction</b>
-              <!-- (<code>rdf:dirLangString</code>) -->
           <li>Best practices with external context security considerations
         </ul>
       <li class="next">
@@ -43,6 +42,64 @@
     <h2>Previous work</h2>
     <p>JSON-LD-star: <a href="https://github.com/json-ld/json-ld-star">github.com/json-ld/json-ld-star</a></p>
     <p>(Thanks to Gregg Kellogg (in memoriam) and Pierre-Antoine Champin.)
+  </section>
+
+  <section class="slide side right big">
+    <h2>JSON-LD direction</h2>
+    <p>
+      In 1.1 mapped to
+      <em>either</em> <code>rdf:CompoundLiteral</code>
+      <em>or</em> special <code>i18n:</code> datatype
+    <pre class="numbered note next">
+&lt;html_and_css>
+  dct:title [ a rdf:CompoundLiteral ;
+      rdf:value <bdo dir="ltr">"HTML و CSS: تصميم و إنشاء مواقع الويب"</bdo> ;
+      rdf:language "ar" ;
+      <span class="blue">rdf:direction "rtl"</span>
+    ] .</pre>
+    <pre class="numbered note next">
+&lt;html_and_css>
+  dct:title
+    <bdo dir="ltr">"HTML و CSS: تصميم و إنشاء مواقع الويب"</bdo>^^<span class="blue">i18n:ar_rtl</span> .</pre>
+    <div class="side">
+      <pre class="numbered note">
+{
+  "@id": "html_and_css",
+  "dct:title": {
+    "@value": <bdo dir="ltr">"HTML و CSS: تصميم و إنشاء مواقع الويب"</bdo>,
+    "@language": "ar",
+    <span class="blue">"@direction": "rtl"</span>
+  }
+}</pre>
+    </div>
+  </section>
+
+  <section class="slide side right big">
+    <h2>RDF 1.2 direction</h2>
+    <p>
+      RDF 1.2 direct representation: <code>rdf:dirLangString</code>
+      <br>
+      <br>
+    <pre class="numbered note">
+&lt;html_and_css>
+  dct:title
+    <bdo dir="ltr">"HTML و CSS: تصميم و إنشاء مواقع الويب"</bdo>@ar<span class="blue">--rtl</span> .</pre>
+    <p>
+      <small>
+        <em>To be rendered as:</em><br>
+        <span lang="ar" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</span>
+      </small>
+    <div class="side">
+      <pre class="numbered note">
+{
+  "@id": "html_and_css",
+  "dct:title": {
+    "@value": <bdo dir="ltr">"HTML و CSS: تصميم و إنشاء مواقع الويب"</bdo>,
+    "@language": "ar",
+    <span class="blue">"@direction": "rtl"</span>
+  }
+}</pre>
+    </div>
   </section>
 
   <section class="slide side right big">
