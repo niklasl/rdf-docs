@@ -97,6 +97,63 @@
   </section>
 
   <section class="slide">
+    <h2>Reifiers &amp; Triple Terms</h2>
+    <p class="next">
+      One proposal is to introduce two new keywords: <code>@reifies</code> and <code>@triple</code> used as keys (and the latter indicating a new kind of node), directly corresponding to the RDF terms.
+    <p class="next">
+      Another is to define one keyword (such as <code>@quote</code>), used as key in reifiers and as <code>@type</code> value for triple terms (leveraging the existing  <code>@value</code> node design).
+    <p class="next">
+      A third is to reuse the <code>@graph</code> keyword, otherwise following the <code>@quote</code> design.
+  </section>
+
+  <section class="slide side right big">
+    <h2>Reifiers (TBD!)</h2>
+    <pre class="numbered note">
+<span class="blue">&lt;&lt;</span> &lt;Alice> :bought &lt;LennyTheLion> <span class="blue">>></span>
+  a :Purchase ;
+  :seller &lt;ToyStore> ;
+  :date "2026-10" .</pre>
+    <div class="side">
+      <pre class="numbered note">
+{
+  <span class="blue">"@quote": {</span>
+    "@id": "Alice",
+    "bought": {"@id": "LennyTheLion"}
+  <span class="blue">}</span>,
+  "@type": "Purchase",
+  "seller": {"@id": "ToyStore"},
+  "date": "2026-10"
+}</pre>
+    </div>
+  </section>
+
+  <section class="slide side right big">
+    <h2>Triple Terms (TBD!)</h2>
+    <pre class="numbered note">
+[] a :Purchase ;
+  :seller &lt;ToyStore> ;
+  :date "2026-10" ;
+  rdf:reifies
+<span class="blue">&lt;&lt;(</span> &lt;Alice> :bought &lt;LennyTheLion> <span class="blue">)>></span>
+.</pre>
+    <div class="side">
+      <pre class="numbered note">
+{
+  "@type": "Purchase",
+  "seller": {"@id": "ToyStore"},
+  "date": "2026-10",
+  "rdf:reifies": {
+    "@type": <span class="blue">"@quote"</span>,
+    <span class="blue">"@value": {</span>
+      "@id": "Alice",
+      "bought": {"@id": "LennyTheLion"}
+    <span class="blue">}</span>
+  }
+}</pre>
+    </div>
+  </section>
+
+  <section class="slide">
     <h2>Early adopters (JSON-LD-star)</h2>
     <ul>
       <li>
