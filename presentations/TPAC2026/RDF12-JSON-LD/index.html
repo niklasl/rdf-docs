@@ -109,7 +109,7 @@
   </section>
 
   <section class="slide side right big">
-    <h2>RDF Annotation</h2>
+    <h2>RDF annotation</h2>
     <pre class="numbered note">
 &lt;Alice> :bought &lt;LennyTheLion> <span class="blue">{|</span>
     a :Purchase ;
@@ -136,7 +136,7 @@
   </section>
 
   <section class="slide side right big">
-    <h2>Annotation&nbsp;Sugar</h2>
+    <h2>Annotation sugar</h2>
     <pre class="numbered note">
 &lt;Alice> :bought &lt;LennyTheLion> <span class="blue">{|</span>
     a :Purchase ;
@@ -241,12 +241,20 @@
     <h2>Implementations (WIP)</h2>
     <ul>
       <li>
-        <a href="https://github.com/niklasl/trld/">TRLD</a> (Python, Java, JS)
-        <a href="https://github.com/niklasl/trld/pull/6">(RDF 1.2 tracking PR)</a>
+        <a href="https://github.com/niklasl/trld/">TRLD</a>
+        (Python, Java, JS; RDF 1.2 contingent on internal JSON-LD forms;
+        see <a href="https://github.com/niklasl/trld/pull/6">tracking PR</a>)
       </li>
       <li>
-        ...
+        <a href="https://github.com/oxigraph/oxigraph">Oxigraph</a> (Rust; is RDF 1.2-compliant and <a href="https://github.com/oxigraph/oxigraph/tree/main/lib/oxjsonld">oxjsonld</a> supports JSON-LD direction to <code>rdf:dirLangString</code>; planned support JSON-LD annotation, reifier and triple terms)
       </li>
+      <li>
+        <a href="https://github.com/filip26/titanium-json-ld">Titanium</a> (Java; used by e.g. <a href="https://jena.apache.org/">Jena</a>) has experimental JSON-LD-star support
+      </li>
+      <li>
+        ... <a href="https://json-ld.org/">others</a>?
+      </li>
+    </ul>
   </section>
 
   <section class="slide final">
