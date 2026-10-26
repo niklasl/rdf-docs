@@ -22,15 +22,29 @@
 prefix : &lt;https://example.org/ns/>
 base &lt;https://example.net/resource/>
 
-&lt;Alice> :bought &lt;LennyTheLion> .</pre>
+&lt;Alice> a :Person ;
+  :bought &lt;LennyTheLion> .
+
+&lt;LennyTheLion> a :Toy ;
+  :category &lt;StuffedAnimal> .</pre>
     <div class="side">
       <pre class="numbered note">{
   "@context": {
     "@vocab": "https://example.org/ns/",
     "@base": "https://example.net/resource/"
   },
-  "@id": "Alice",
-  "bought": {"@id": "LennyTheLion"}
+  "@graph": [
+    {
+      "@id": "Alice",
+      "@type": "Person",
+      "bought": {"@id": "LennyTheLion"}
+    },
+    {
+      "@id": "LennyTheLion",
+      "@type": "Toy",
+      "category": {"@id": "StuffedAnimal"}
+    }
+  ]
 }</pre>
     </div>
   </section>
