@@ -16,6 +16,24 @@
    <p class="note">Niklas Lindström, National Library of Sweden
   </section>
 
+  <section class="slide side right big">
+    <h2>(JSON-based RDF syntax)</h2>
+    <pre class="numbered note">
+prefix : &lt;https://example.org/ns/>
+base &lt;https://example.net/resource/>
+
+&lt;Alice> :bought &lt;LennyTheLion> .</pre>
+    <div class="side">
+      <pre class="numbered note">{
+  "@context": {
+    "@vocab": "https://example.org/ns/",
+    "@base": "https://example.net/resource/"
+  },
+  "@id": "Alice",
+  "bought": {"@id": "LennyTheLion"}
+}</pre>
+    </div>
+  </section>
 
   <section class="slide">
     <h2>JSON-LD &mdash; planned new versions</h2>
